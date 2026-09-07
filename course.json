@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "deniq-oneday-course/v1",
+  "courseId": "deniq-ai-oneday",
+  "title": "DENIQ AI 원데이클래스",
+  "slogan": "질문이 제작이 되는 경험",
+  "description": "AI가 처음이어도, 기초부터 직접 만들며 배웁니다. 첫 웹페이지를 만드는 과정에서 원하는 것을 질문하고, 결과를 판단하고, 막힌 부분을 AI와 풀어가는 방법을 익힙니다.",
+  "cta": "사전 질문지 작성하기",
+  "mode": "review",
+  "operations": {"date": null,"startTime": null,"endTime": null,"venue": null,"venueHint": "잠실 · 세부 장소 안내 예정","capacity": null,"capacityHint": "8~12명 소규모 수업 예정","priceKRW": null,"contactUrl": null,"paymentUrl": null,"bankTransfer": null,"refundPolicy": null},
+  "privacy": {"purpose": "원데이클래스 수업 준비와 참여자의 학습 희망 파악", "controller": null, "retention": null, "contact": null, "noticeStatus": "pending"},
+  "audience": ["AI를 처음 접해 어디서부터 시작할지 막막한 분", "질문과 답변을 넘어 직접 결과물을 만들어보고 싶은 분", "원하는 결과가 나오지 않을 때 어떻게 수정할지 배우고 싶은 분"],
+  "outcomes": [
+    {"title":"AI의 기초를 이해합니다", "body":"자주 듣는 용어와 AI가 할 수 있는 일, 사람이 확인해야 하는 부분을 구분합니다."},
+    {"title":"생각을 구체적인 요청으로 바꿉니다", "body":"무엇을 만들고 싶은지 나누어 설명하고, 결과를 보며 다음 질문을 정하는 방법을 익힙니다."},
+    {"title":"직접 만들고 고쳐봅니다", "body":"첫 웹페이지를 실습하면서 내용을 바꾸고 오류를 확인합니다. 막힌 상황에서 다시 시도하는 과정을 함께 경험합니다."},
+    {"title":"다음 시도의 기준을 가져갑니다", "body":"수업에서 쓴 질문과 수정 과정을 정리해, 새로운 아이디어에도 적용할 출발점을 남깁니다."}
+  ],
+  "journey": [
+    {"title":"기초부터 이해하기", "body":"AI와 프로그램의 기본 개념을 실제 사례로 살펴봅니다.", "result":"낯선 용어 대신 작업 흐름을 이해합니다."},
+    {"title":"질문을 제작으로 연결하기", "body":"원하는 결과를 구체적으로 설명하고 첫 웹페이지를 함께 만듭니다.", "result":"내 요청이 화면으로 바뀌는 과정을 경험합니다."},
+    {"title":"확인하고 고쳐보기", "body":"결과를 직접 살펴보고, 수정 요청과 오류 해결을 차근차근 연습합니다.", "result":"완성 여부를 판단하고 다음 질문을 정해봅니다."},
+    {"title":"공유하고 이어가기", "body":"GitHub와 배포의 흐름을 살펴보고, 만든 결과를 다른 사람에게 보여주는 방법을 익힙니다.", "result":"수업 이후 다시 참고할 결과와 작업 과정을 정리합니다."}
+  ],
+  "preparation": ["실습에 사용할 개인 노트북과 충전기", "사용 도구·계정·구독 등 세부 준비물은 수업 확정 후 안내", "만들어보고 싶은 것이 없어도 괜찮습니다. 수업에서 첫 실습부터 함께 시작합니다."],
+  "faq": [
+    {"question":"AI나 코딩을 전혀 몰라도 괜찮나요?", "answer":"네. 기초 개념부터 설명하고 첫 제작 과정을 함께 따라갑니다. 이미 잘하는 사람만을 위한 수업이 아닙니다."},
+    {"question":"웹페이지 만드는 법만 배우나요?", "answer":"웹페이지는 첫 실습의 도구입니다. 원하는 것을 설명하고, 결과를 확인하고, 오류와 수정 과정을 AI와 풀어가는 방법이 수업의 중심입니다."},
+    {"question":"하루 만에 어떤 프로그램이든 혼자 만들 수 있나요?", "answer":"모든 개발을 하루 만에 해결하는 과정은 아닙니다. 작은 결과물을 직접 만들며 새로운 과제에 접근하는 기초와 작업 방식을 익힙니다."},
+    {"question":"사전 질문지를 제출하면 참가가 확정되나요?", "answer":"아니요. 사전 질문지는 수업 준비를 위한 정보입니다. 일정·참가 신청·결제 안내는 별도로 확인해 주세요."}
+  ],
+  "survey": {
+    "open": false,
+    "endpoint": null,
+    "title":"원데이클래스 사전 질문지",
+    "intro":"어떤 일을 하고 있고 무엇을 배워보고 싶은지 알려주세요. 다섯 가지 질문을 바탕으로 수업을 준비합니다.",
+    "aiExperienceOptions":[{"value":"never","label":"처음이에요"},{"value":"tried","label":"질문하거나 간단히 써봤어요"},{"value":"regular","label":"일이나 일상에서 활용하고 있어요"}],
+    "learningGoalOptions":[{"value":"understand","label":"AI의 기초 이해하기"},{"value":"use","label":"원하는 결과를 얻도록 질문하기"},{"value":"create","label":"AI와 직접 만들어보기"},{"value":"solve","label":"오류를 확인하고 고치는 방법"},{"value":"unsure","label":"무엇을 할 수 있는지 먼저 알고 싶어요"},{"value":"other","label":"직접 적기"}]
+  }
+}

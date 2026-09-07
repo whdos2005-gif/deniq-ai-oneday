@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="DENIQ AI 원데이클래스 사전 질문지">
+  <title>DENIQ · 원데이클래스 사전 질문지</title>
+  <link rel="stylesheet" href="./survey.css">
+  <script type="module" src="./survey.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#survey-main">질문으로 바로 이동</a>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="./index.html" aria-label="DENIQ 원데이클래스 소개로 돌아가기">
+        <span class="brand-mark" aria-hidden="true">D</span>
+        <span class="brand-lockup">studio <strong>DENIQ</strong></span>
+      </a>
+      <span class="topbar-label">PRE-CLASS QUESTIONS</span>
+    </header>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">BEGIN · ASK · JUDGE · REVISE · APPLY WITH AI · BEGIN · ASK · JUDGE · REVISE · APPLY WITH AI ·</div>
+    </div>
+
+    <div class="progress-region" data-progress-region hidden>
+      <div class="progress" role="progressbar" aria-label="질문 진행률" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1" aria-valuetext="5개 중 1번째 질문">
+        <i data-progress-bar></i>
+      </div>
+      <p class="progress-label" data-progress-label>01 / 05</p>
+    </div>
+
+    <p class="preview-badge" data-preview-badge>검토용 미리보기 · 입력 내용은 서버로 전송되지 않습니다</p>
+
+    <form id="survey-form" novalidate>
+      <main id="survey-main" class="screen" tabindex="-1"></main>
+      <footer class="actions" data-actions hidden></footer>
+    </form>
+
+    <p class="sr-only" data-live-status role="status" aria-live="polite" aria-atomic="true"></p>
+  </div>
+
+  <noscript><div class="noscript-message">이 질문지를 작성하려면 브라우저의 JavaScript를 켜주세요.</div></noscript>
+</body>
+</html>
