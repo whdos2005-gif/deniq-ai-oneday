@@ -3,166 +3,184 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#faf9fe">
-  <meta name="description" content="AI가 처음이어도 질문하고 판단하고 수정하며 직접 만들어보는 DENIQ AI 원데이클래스">
+  <meta name="theme-color" content="#f7f3ea">
+  <meta name="description" content="AI가 처음이어도 내 웹페이지를 직접 만들고 수정해 공유하는 DENIQ AI 원데이클래스">
   <title>DENIQ AI 원데이클래스</title>
-  <link rel="stylesheet" href="./landing.css">
-  <script type="module" src="./landing.js"></script>
+  <link rel="stylesheet" href="./landing.css?v=20260908-revision">
+  <script type="module" src="./landing.js?v=20260908-revision"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">본문으로 바로가기</a>
 
   <header class="site-header">
     <a class="brand" href="#top" aria-label="studio DENIQ 처음으로">
-      <svg class="brand-mark" viewBox="0 0 128 120" aria-hidden="true" focusable="false">
-        <path fill="currentColor" fill-rule="evenodd" d="M0 0h40c42.5 0 72 25.3 72 60s-29.5 60-72 60H0V0Zm18 5v110h22c33.2 0 55-23.4 55-55S73.2 5 40 5H18Z"></path>
-        <path fill="currentColor" d="M57 73h18l53 47h-20L57 73Z"></path>
-      </svg>
+      <svg class="brand-mark" viewBox="0 0 128 120" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M0 0h40c42.5 0 72 25.3 72 60s-29.5 60-72 60H0V0Zm18 5v110h22c33.2 0 55-23.4 55-55S73.2 5 40 5H18Z"></path><path fill="currentColor" d="M57 73h18l53 47h-20L57 73Z"></path></svg>
       <span>studio <strong>DENIQ</strong></span>
     </a>
     <nav class="site-nav" aria-label="페이지 메뉴">
-      <a href="#journey">수업 흐름</a>
-      <a href="#instructor">강사</a>
-      <a href="#faq">FAQ</a>
+      <a href="#method">수업 방식</a>
+      <a href="#curriculum">상세 과정</a>
+      <a href="#payment">준비·입금</a>
     </nav>
     <a class="header-cta" href="./survey.html" data-course-cta>사전 질문지 작성하기</a>
   </header>
 
+  <p class="config-alert" data-config-alert role="status" hidden>최신 운영 정보를 불러오지 못했습니다. 일시·수업료를 확인하기 전에는 입금하지 말아주세요.</p>
+
   <main id="main">
     <section class="hero" id="top">
       <div class="hero-copy">
-        <p class="eyebrow">DENIQ · AI ONE-DAY CLASS</p>
-        <p class="review-chip" data-review-chip>검토용 화면 · 신청/결제 아님</p>
+        <p class="eyebrow" data-hero-eyebrow>DENIQ AI 원데이클래스</p>
         <h1>질문이 제작이 되는 경험</h1>
-        <p class="hero-lede" data-course-description>AI가 처음이어도, 기초부터 직접 만들며 배웁니다. 첫 웹페이지를 만드는 과정에서 원하는 것을 질문하고, 결과를 판단하고, 막힌 부분을 AI와 풀어가는 방법을 익힙니다.</p>
+        <p class="hero-lead" data-hero-lead>AI가 처음이어도 내 웹페이지를 직접 만들고, 원하는 모습으로 수정해 다른 사람에게 공유합니다.</p>
+        <p class="hero-detail" data-hero-detail>한 번의 정답을 받는 수업이 아닙니다. 질문하고, 결과를 보고, 다시 고치는 과정을 내 손으로 경험합니다.</p>
         <div class="hero-actions">
-          <a class="button primary" href="./survey.html" data-course-cta>사전 질문지 작성하기</a>
-          <a class="text-link" href="#journey">수업 흐름 보기 <span aria-hidden="true">↘</span></a>
+          <a class="button button-primary" href="./survey.html" data-course-cta>사전 질문지 작성하기</a>
+          <a class="button button-quiet" href="#payment">일정·입금 안내 보기</a>
         </div>
-        <dl class="hero-meta" aria-label="운영 정보">
-          <div><dt>DATE</dt><dd data-operation="date">일정 안내 예정</dd></div>
-          <div><dt>PLACE</dt><dd data-operation="venue">잠실 · 세부 장소 안내 예정</dd></div>
-          <div><dt>CLASS</dt><dd data-operation="capacity">소규모 수업 예정</dd></div>
+        <dl class="hero-facts" aria-label="수업 운영 정보">
+          <div><dt>일시</dt><dd data-operation="schedule">일정 안내 예정</dd></div>
+          <div><dt>장소</dt><dd data-operation="venue">잠실 · 세부 장소 안내 예정</dd></div>
+          <div><dt>수업료</dt><dd data-operation="price">수업료 안내 예정</dd></div>
+          <div><dt>인원</dt><dd data-operation="capacity">소규모 수업 예정</dd></div>
         </dl>
       </div>
-      <div class="hero-visual" role="img" aria-label="노트북과 데님으로 구성된 DENIQ 에디토리얼 이미지">
-        <div class="hero-note">
-          <span>BEGINNER TO MAKER</span>
-          <strong>처음이어도<br>직접 만듭니다.</strong>
-          <p>ASK · JUDGE · REVISE · SOLVE</p>
-        </div>
+      <figure class="hero-media">
+        <img src="./assets/deniq-editorial-web.jpg" alt="웹페이지를 함께 만드는 과정을 표현한 DENIQ 콘셉트 이미지" data-hero-image>
+        <figcaption data-hero-caption>수업의 제작 흐름을 표현한 콘셉트 이미지입니다.</figcaption>
+      </figure>
+    </section>
+
+    <section class="promise section-shell" aria-labelledby="promise-title">
+      <p class="section-label">수업의 한 문장</p>
+      <div>
+        <h2 id="promise-title">웹페이지 한 장을 만들며<br>AI와 일하는 순서를 배웁니다.</h2>
+        <p>무엇을 원하는지 말하기 → 결과를 읽고 판단하기 → 고칠 부분을 구체적으로 요청하기 → 오류를 해결하기 → 완성한 주소를 공유하기.</p>
       </div>
     </section>
 
-    <section class="learning-rail" aria-labelledby="learning-rail-title">
-      <header>
-        <p class="section-kicker">HOW WE LEARN</p>
-        <h2 id="learning-rail-title">웹페이지는 첫 실습입니다.<br>중심은 AI와 일하는 방법입니다.</h2>
+    <section class="audience section-shell" id="audience" aria-labelledby="audience-title">
+      <header class="section-heading">
+        <p class="section-label">이런 분을 위한 수업</p>
+        <h2 id="audience-title">잘 몰라도 시작할 수 있고,<br>직접 해봐야 이해되는 분.</h2>
       </header>
-      <ol>
-        <li><span>01</span><strong>초보</strong><small>BEGIN</small></li>
-        <li><span>02</span><strong>질문</strong><small>ASK</small></li>
-        <li><span>03</span><strong>판단</strong><small>JUDGE</small></li>
-        <li><span>04</span><strong>수정</strong><small>REVISE</small></li>
-        <li><span>05</span><strong>AI 활용</strong><small>APPLY</small></li>
+      <ol class="audience-list" data-audience-list>
+        <li><span>01</span><p>AI를 처음 접해 어디서부터 시작할지 막막한 분</p></li>
+        <li><span>02</span><p>질문과 답변을 넘어 직접 결과물을 만들어보고 싶은 분</p></li>
+        <li><span>03</span><p>원하는 결과가 나오지 않을 때 어떻게 수정할지 배우고 싶은 분</p></li>
       </ol>
     </section>
 
-    <section class="section-shell audience" id="audience">
-      <div class="section-heading">
-        <div><p class="section-kicker">01 · FOR WHOM</p><h2>처음이라서<br>막막한 분에게.</h2></div>
-        <p>도구를 외우기보다<br>작은 결과를 함께 만듭니다.</p>
-      </div>
-      <div class="audience-grid" data-audience-list></div>
-    </section>
-
-    <section class="outcomes" id="outcomes">
+    <section class="transformation" id="results" aria-labelledby="results-title">
       <div class="section-shell">
-        <div class="section-heading light">
-          <div><p class="section-kicker">02 · WHAT YOU TAKE</p><h2>하루 뒤,<br>무엇이 남나요.</h2></div>
-          <p>직접 만든 결과와<br>다시 활용할 작업 방법을 가져갑니다.</p>
+        <header class="section-heading section-heading-light">
+          <p class="section-label">수업 전과 후</p>
+          <h2 id="results-title">막연한 질문이<br>확인 가능한 제작 요청으로.</h2>
+        </header>
+        <div class="request-example" aria-label="질문 수정 예시">
+          <div><span>처음 요청</span><p data-request-before>“매장 소개 페이지를 예쁘게 만들어줘.”</p></div>
+          <b aria-hidden="true">→</b>
+          <div><span>수정한 요청</span><p data-request-after>“베이커리를 처음 방문할 손님에게 대표 빵과 영업시간을 보여주고, 휴대폰에서도 잘 보이며 길찾기 링크가 열리게 만들어주세요.”</p></div>
         </div>
+        <p class="request-explanation" data-request-explanation>상황 · 원하는 결과 · 참고자료 · 확인 기준을 더해 실제로 만들고 확인할 수 있는 요청으로 바꿉니다.</p>
         <div class="outcome-grid" data-outcomes></div>
       </div>
     </section>
 
-    <section class="journey section-shell" id="journey">
-      <div class="section-heading">
-        <div><p class="section-kicker">03 · THE JOURNEY</p><h2>이해에서<br>다음 활용까지.</h2></div>
-        <p>초보 → 질문 → 판단 → 수정 → AI 활용</p>
-      </div>
-      <div class="journey-list" data-journey></div>
-    </section>
-
-    <section class="instructor section-shell" id="instructor">
-      <header class="instructor-masthead">
-        <p class="section-kicker">04 · INSTRUCTOR</p>
-        <div><h2>LOGAN</h2><p>STUDIO DENIQ FOUNDER · ART DIRECTOR · DIRECTOR</p></div>
-        <p>AI FILM · BUSINESS SYSTEMS<br>3D · FURNITURE · BRAND &amp; IP</p>
+    <section class="method section-shell" id="method" aria-labelledby="method-title">
+      <header class="section-heading">
+        <p class="section-label">수업 방식</p>
+        <h2 id="method-title">설명보다 먼저 해보고,<br>결과를 보며 고칩니다.</h2>
       </header>
-      <div class="profile-grid">
-        <div class="profile-photo">
-          <img src="./assets/logan-profile-bw.png" alt="LOGAN 흑백 상반신 프로필">
-          <div><span>LOGAN · STUDIO DENIQ</span><strong>@STUDIO.DENIQ</strong></div>
+      <div class="method-list" data-teaching-method>
+        <article><span>01</span><div><h3>같이 만들기</h3><p>강사의 완성 화면을 구경하는 데서 끝내지 않고 각자의 페이지를 직접 만듭니다.</p></div></article>
+        <article><span>02</span><div><h3>판단하고 수정하기</h3><p>AI의 첫 결과를 그대로 쓰지 않고 목적과 화면을 확인하며 다음 요청을 정합니다.</p></div></article>
+        <article><span>03</span><div><h3>막힘을 해결하기</h3><p>오류가 나면 메시지를 읽고 원인을 좁혀 다시 시도하는 순서를 연습합니다.</p></div></article>
+      </div>
+    </section>
+
+    <section class="curriculum" id="curriculum" aria-labelledby="curriculum-title">
+      <div class="section-shell">
+        <header class="section-heading">
+          <p class="section-label">상세 커리큘럼</p>
+          <h2 id="curriculum-title">처음 켜는 순간부터<br>공유할 수 있는 주소까지.</h2>
+          <p class="section-intro">각 단계마다 설명을 듣고, 직접 움직이고, 다음 단계에 쓸 결과를 남깁니다.</p>
+        </header>
+        <div class="journey-list" data-journey></div>
+      </div>
+    </section>
+
+    <section class="deliverables section-shell" id="deliverables" aria-labelledby="deliverables-title">
+      <header class="section-heading">
+        <p class="section-label">가져가는 자료</p>
+        <h2 id="deliverables-title">수업이 끝난 뒤에도<br>다시 써볼 수 있도록.</h2>
+      </header>
+      <div class="deliverable-list" data-deliverables></div>
+      <div class="materials-heading" id="materials"><p class="section-label">실제 교재 미리보기</p><p>이미지를 누르면 큰 화면으로 확인할 수 있습니다.</p></div>
+      <div class="materials-visuals" data-materials-visuals></div>
+    </section>
+
+    <section class="instructor section-shell" id="instructor" aria-labelledby="instructor-title">
+      <div class="profile-photo"><img src="./assets/logan-profile-bw.png" alt="LOGAN 흑백 상반신 프로필"><p>STUDIO DENIQ · LOGAN</p></div>
+      <article class="profile-copy">
+        <p class="section-label">강사</p>
+        <h2 id="instructor-title">LOGAN</h2>
+        <h3>AI가 아이디어를 실제 결과물로 바꾸는 전 과정을 설계합니다.</h3>
+        <p>LOGAN은 Studio DENIQ의 대표·아트 디렉터로서 AI 영상과 미디어아트, 브랜드 비주얼과 IP, 콘텐츠 제작 도구, 3D·가구·공간으로 이어지는 프로젝트를 기획하고 디렉팅합니다.</p>
+        <dl class="instructor-credit"><dt>국제 이력</dt><dd>칸 세계 영화제 파이널리스트</dd><dd>Cannes World Film Festival · Finalist · 〈LEVIATHAN〉</dd></dl>
+      </article>
+    </section>
+
+    <section class="logistics" id="payment" aria-labelledby="logistics-title">
+      <div class="section-shell">
+        <header class="section-heading">
+          <p class="section-label">준비와 등록 안내</p>
+          <h2 id="logistics-title">오실 준비부터<br>입금 전 확인까지.</h2>
+        </header>
+        <div class="logistics-grid">
+          <article class="preparation-panel">
+            <h3>준비물</h3>
+            <ul data-preparation><li>실습에 사용할 개인 노트북과 충전기</li></ul>
+          </article>
+          <article class="payment-panel" id="bank">
+            <h3>입금 안내</h3>
+            <dl class="bank-details">
+              <div><dt>은행</dt><dd data-bank="bank">안내 예정</dd></div>
+              <div><dt>계좌번호</dt><dd><span class="selectable" data-bank="account">안내 예정</span><button type="button" class="copy-button" data-copy-account hidden>계좌번호 복사</button></dd></div>
+              <div><dt>예금주</dt><dd data-bank="holder">안내 예정</dd></div>
+            </dl>
+            <p class="copy-status" data-copy-status aria-live="polite"></p>
+            <p class="depositor-guide" data-depositor-guide>입금자명 안내는 운영 정보 확정 후 표시됩니다.</p>
+            <p class="payment-caution" data-payment-caution>수업료와 일정을 확인한 후 입금해주세요.</p>
+            <p class="payment-scope">계좌 이체로 안내합니다. 입금 확인은 주최 측이 개별 안내합니다.</p>
+          </article>
         </div>
-        <article class="profile-copy">
-          <p class="profile-role">NOW · STUDIO DENIQ</p>
-          <h3>AI가 아이디어를<br>실제 결과물로 바꾸는<br>전 과정을 설계합니다.</h3>
-          <p>LOGAN은 Studio DENIQ의 대표·아트 디렉터로서 AI 영상과 미디어아트, 브랜드 비주얼과 IP, 콘텐츠 제작 도구, 3D·가구·공간으로 이어지는 프로젝트를 기획하고 디렉팅합니다.</p>
-          <div class="cannes-inline">
-            <p>INTERNATIONAL RECOGNITION</p>
-            <strong>칸 세계 영화제 파이널리스트</strong>
-            <span>CANNES WORLD FILM FESTIVAL · FINALIST · 〈LEVIATHAN〉</span>
-          </div>
-        </article>
+        <div class="refund-row">
+          <h3>취소·환불</h3>
+          <p data-refund-policy>환불 기준 안내 예정</p>
+          <p data-refund-after></p>
+        </div>
       </div>
     </section>
 
-    <section class="prepare section-shell" id="prepare">
-      <div class="prepare-grid">
-        <article>
-          <p class="section-kicker">05 · PREPARATION</p>
-          <h2>준비할 것.</h2>
-          <ul data-preparation></ul>
-        </article>
-        <article class="method-card">
-          <p class="section-kicker">CLASS STANDARD</p>
-          <h2>수업의 최소 완료선.</h2>
-          <p>첫 웹페이지를 만들고, 결과를 직접 확인하고, 한 번 이상 질문을 고쳐 다시 시도합니다. 이후 다른 관심사에도 같은 흐름을 적용할 출발점을 정리합니다.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="faq section-shell" id="faq">
-      <div class="section-heading">
-        <div><p class="section-kicker">06 · FAQ</p><h2>미리 답합니다.</h2></div>
-      </div>
+    <section class="faq section-shell" id="faq" aria-labelledby="faq-title">
+      <header class="section-heading"><p class="section-label">자주 묻는 질문</p><h2 id="faq-title">신청 전에 확인하세요.</h2></header>
       <div class="faq-list" data-faq></div>
     </section>
 
-    <section class="apply" id="apply">
-      <div class="apply-inner">
-        <p class="section-kicker">DENIQ · PRE-CLASS QUESTIONS</p>
-        <h2>내가 배우고 싶은 것을<br>먼저 들려주세요.</h2>
-        <p class="apply-copy">다섯 가지 질문은 수업 준비를 위한 사전 확인입니다. 제출만으로 참가나 결제가 확정되지 않습니다.</p>
-        <a class="apply-survey" href="./survey.html" data-course-cta>
-          <span><small>5 QUESTIONS · ABOUT 3 MIN</small><strong>사전 질문지 작성하기</strong></span>
-          <b aria-hidden="true">↗</b>
-        </a>
-        <p class="apply-status" data-application-status>현재는 실제 접수가 아닌 검토용 화면입니다.</p>
+    <section class="apply" id="apply" aria-labelledby="apply-title">
+      <div class="section-shell apply-inner">
+        <p class="section-label">사전 질문</p>
+        <h2 id="apply-title">무엇을 만들고 싶은지<br>먼저 들려주세요.</h2>
+        <p>다섯 가지 질문을 바탕으로 초보자의 속도와 관심사에 맞는 예시를 준비합니다.</p>
+        <a class="apply-link" href="./survey.html" data-course-cta><span>사전 질문지 작성하기</span><b aria-hidden="true">↗</b></a>
+        <p class="application-status" data-application-status>현재 사전 질문지는 검토용이며 실제 접수되지 않습니다.</p>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="brand">
-      <svg class="brand-mark" viewBox="0 0 128 120" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M0 0h40c42.5 0 72 25.3 72 60s-29.5 60-72 60H0V0Zm18 5v110h22c33.2 0 55-23.4 55-55S73.2 5 40 5H18Z"></path><path fill="currentColor" d="M57 73h18l53 47h-20L57 73Z"></path></svg>
-      <span>studio <strong>DENIQ</strong></span>
-    </div>
-    <p>질문이 제작이 되는 경험</p>
-  </footer>
-  <a class="mobile-cta" href="./survey.html" data-course-cta>사전 질문지 작성하기</a>
+  <footer class="site-footer"><div class="brand"><svg class="brand-mark" viewBox="0 0 128 120" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M0 0h40c42.5 0 72 25.3 72 60s-29.5 60-72 60H0V0Zm18 5v110h22c33.2 0 55-23.4 55-55S73.2 5 40 5H18Z"></path><path fill="currentColor" d="M57 73h18l53 47h-20L57 73Z"></path></svg><span>studio <strong>DENIQ</strong></span></div><p>질문이 제작이 되는 경험</p></footer>
 
-  <noscript><p class="noscript-message">이 페이지의 최신 수업 정보를 보려면 JavaScript를 켜주세요.</p></noscript>
+  <noscript><p class="noscript-message">최신 일정·수업료·입금 정보를 확인하려면 JavaScript를 켜주세요. 확인 전에는 입금하지 말아주세요.</p></noscript>
 </body>
 </html>
