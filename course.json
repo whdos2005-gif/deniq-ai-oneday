@@ -2,6 +2,38 @@
   "schemaVersion": "deniq-oneday-course/v1",
   "courseId": "deniq-ai-oneday",
   "title": "DENIQ AI 원데이클래스",
+  "designRevision": "yunha-v3",
+  "instructor": {
+    "name": "LOGAN · 류형래",
+    "role": "Studio DENIQ 대표 · 아트 디렉터",
+    "quote": "AI가 아이디어를 실제 결과물로 바꾸는 전 과정을 설계합니다",
+    "summary": "미디어아트와 영상을 시작으로 이미지·영상·브랜딩을 연결하는 비주얼 디렉션과 IP 개발을 이어왔습니다. 현재 Studio DENIQ에서 AI를 결합한 비주얼 제작 과정을 설계합니다.",
+    "credits": [
+      {"title": "Cannes World Film Festival", "detail": "Finalist · 〈LEVIATHAN〉"},
+      {"title": "New York International Film Awards", "detail": "Winner · 〈LEVIATHAN〉"},
+      {"title": "Hollywood International Indie Film & Screenplay Awards", "detail": "Award Winner · 〈LEVIATHAN〉"},
+      {"title": "IndieFEST Film Awards", "detail": "Award of Excellence · 〈LEVIATHAN〉 Movie Trailer"},
+      {"title": "제5회 서울국제AI영화제", "detail": "3개 부문 공식 노미네이트 · 〈LEVIATHAN〉"},
+      {"title": "2025 경기청년갭이어", "detail": "경기도지사상 · AI 미디어아트 〈생성된 생산〉"},
+      {"title": "2026 서울디자인페스티벌", "detail": "영 디자이너 공식 선정 · STUDIO DENIQ 〈MOIRÉ〉"},
+      {"title": "제10회 서울국제 29초 영화제", "detail": "서울특별시장상 · 〈꼭 같이오자,〉 연출·촬영"},
+      {"title": "2026 부산다큐필름페스티벌", "detail": "경쟁부문 상영작 선정 · 〈생성된 생산〉"},
+      {"title": "콘텐츠진흥원(KOCCA) 다큐", "detail": "신진감독 선정 · 〈Do Docs〉"},
+      {"title": "제12회 신한 29초 영화제", "detail": "한국경제신문사 사장상 · 〈내 꿈은,〉"},
+      {"title": "포항 AI영화제", "detail": "공식 선정·GV · AI 애니메이션 〈별로 만든 도시〉"}
+    ],
+    "additionalCredits": [
+      {"title": "New York Film & Cinematography Awards", "detail": "Honorable Mention · 〈LEVIATHAN〉"},
+      {"title": "Global Film Festival Awards · Los Angeles", "detail": "Official Selection · 〈LEVIATHAN〉 Best Trailer"},
+      {"title": "WSXA International Film Festival · Barcelona", "detail": "Official Selection · 〈LEVIATHAN〉"},
+      {"title": "Tokyo Film & Screenplay Awards", "detail": "Honorable Mention · 〈LEVIATHAN〉"},
+      {"title": "Seattle AI Film Festival", "detail": "Official Selection 및 온라인 상영 · 〈LEVIATHAN〉"},
+      {"title": "Anatolia International Film Festival", "detail": "Finalist · 〈LEVIATHAN〉"},
+      {"title": "제9회 제주혼듸독립영화제", "detail": "혼듸넥스트(AI) 비경쟁부문 상영작 선정 · 〈생성된 생산〉"},
+      {"title": "제28회 호미영화제", "detail": "공식 초청 · AI 애니메이션 〈별로 만든 도시〉"},
+      {"title": "그룹전 〈공존감각〉", "detail": "성수 뎁센드 갤러리 · 〈생성된 생산〉, 〈서브루틴 11〉"}
+    ]
+  },
   "slogan": "질문이 제작이 되는 경험",
   "description": "AI가 처음이어도 괜찮습니다. 기초를 이해하고, 내 웹페이지를 직접 만들고, 고쳐서 공유합니다. 수업이 끝난 뒤에도 새로운 일을 AI와 풀어갈 수 있도록, 질문부터 제작까지 한 번의 흐름을 경험합니다.",
   "cta": "사전 질문지 작성하기",
@@ -136,14 +168,17 @@
   "faq": [
     {
       "question": "AI도 코딩도 처음인데 따라갈 수 있나요?",
+      "highlight": true,
       "answer": "기초 개념과 첫 실행부터 시작합니다. 제작 요청 예시를 바꿔 쓰고 화면을 보며 따라가는 방식이라 코딩 문법을 미리 공부할 필요는 없습니다. 낯선 화면이 나오면 어디에서 막혔는지 확인하는 과정도 함께 다룹니다."
     },
     {
       "question": "웹페이지 만드는 법만 배우는 수업인가요?",
+      "highlight": true,
       "answer": "웹페이지는 질문이 실제 결과로 바뀌는 과정을 가장 쉽게 확인할 첫 실습입니다. 핵심은 만들 범위를 정하고, AI에게 일을 설명하고, 결과를 판단하고, 다시 수정하는 방식입니다. 다음에 다른 도구나 작업을 만들 때도 이 순서를 적용할 수 있도록 정리합니다."
     },
     {
       "question": "어떤 결과물을 만들게 되나요?",
+      "highlight": true,
       "answer": "메뉴 추천이나 취향 테스트처럼 버튼을 누르면 결과가 나오는 작은 웹 프로그램, 또는 내 브랜드·서비스 소개 페이지를 출발점으로 삼습니다. 로그인·결제·복잡한 데이터베이스가 필요한 서비스 전체를 하루에 완성하는 범위는 아닙니다."
     },
     {
@@ -224,7 +259,7 @@
   },
   "hero": {
     "eyebrow": "AI 입문자를 위한 오프라인 실습",
-    "lead": "처음 배우는 AI로,\n내 웹페이지를 직접 만드는 하루.",
+    "lead": "처음 배우는 AI로,\n내 웹페이지를 직접 만드는 하루",
     "detail": "용어 설명에서 끝나지 않습니다. 원하는 기능을 말하고, 내 노트북에서 실행하고, 다른 사람에게 보여줄 링크까지 함께 만듭니다.",
     "image": "./assets/photo-meeting-v1.jpg",
     "imageAlt": "자연광이 드는 공간에서 노트북 앞에 둘러앉아 대화하는 사람들"

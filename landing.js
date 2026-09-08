@@ -11,6 +11,10 @@ function escapeHTML(value) {
     .replaceAll("'", "&#039;");
 }
 
+function headingText(value) {
+  return escapeHTML(String(value ?? "").trim().replace(/[.。]+$/, ""));
+}
+
 function text(selector, value) {
   const node = document.querySelector(selector);
   if (node && value !== null && value !== undefined && String(value).trim()) node.textContent = String(value).trim();
@@ -35,13 +39,13 @@ function renderAudience(items = []) {
 
 function renderOutcomes(items = []) {
   document.querySelector("[data-outcomes]").innerHTML = items.map((item, index) => `
-    <article><span>${String(index + 1).padStart(2, "0")}</span><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.body)}</p></article>`).join("");
+    <article><span>${String(index + 1).padStart(2, "0")}</span><h3>${headingText(item.title)}</h3><p>${escapeHTML(item.body)}</p></article>`).join("");
 }
 
 function renderTeachingMethod(items = []) {
   if (!items.length) return;
   document.querySelector("[data-teaching-method]").innerHTML = items.map((item, index) => `
-    <article><span>${String(index + 1).padStart(2, "0")}</span><div><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.body)}</p>${item.example ? `<p class="method-example">예시 · ${escapeHTML(item.example)}</p>` : ""}</div></article>`).join("");
+    <article><span>${String(index + 1).padStart(2, "0")}</span><div><h3>${headingText(item.title)}</h3><p>${escapeHTML(item.body)}</p>${item.example ? `<p class="method-example">예시 · ${escapeHTML(item.example)}</p>` : ""}</div></article>`).join("");
 }
 
 function renderRequestExample(example = {}) {
@@ -51,37 +55,55 @@ function renderRequestExample(example = {}) {
 }
 
 function renderJourney(items = []) {
+  const phases = ["이해·기획", "이해·기획", "준비", "제작·수정", "제작·수정", "저장·공유", "저장·공유"];
   document.querySelector("[data-journey]").innerHTML = items.map((item, index) => {
     const activities = Array.isArray(item.activities) ? item.activities : [];
-    return `<article class="journey-step">
-      <div class="journey-number">${String(index + 1).padStart(2, "0")}</div>
-      <div class="journey-summary"><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.body)}</p></div>
-      <div class="journey-activities"><h4>직접 하는 일</h4><ul>${activities.map((activity) => `<li>${escapeHTML(activity)}</li>`).join("")}</ul></div>
-      <div class="journey-result"><h4>이 단계에서 남는 것</h4><p>${escapeHTML(item.result)}</p></div>
-    </article>${index === 2 && items.length > 3 ? `
+    const number = String(index + 1).padStart(2, "0");
+    return `<details class="journey-step" id="journey-${number}">
+      <summary class="journey-summary">
+        <h3><span class="journey-number">${number}</span>
+        <span class="journey-summary-copy"><span class="journey-phase">${phases[index] || "실습"}</span><span class="journey-title">${headingText(item.title)}</span></span>
+        <span class="journey-toggle" aria-hidden="true">+</span></h3>
+      </summary>
+      <div class="journey-content">
+        <p class="journey-description">${escapeHTML(item.body)}</p>
+        <div class="journey-activities"><h4>직접 하는 일</h4><ul>${activities.map((activity) => `<li>${escapeHTML(activity)}</li>`).join("")}</ul></div>
+        <div class="journey-result"><h4>이 단계에서 남는 것</h4><p>${escapeHTML(item.result)}</p></div>
+      </div>
+    </details>${index === 2 && items.length > 3 ? `
       <aside class="journey-interlude" id="practice-break" aria-label="첫 제작을 시작하기 전에">
         <figure class="listening-photo editorial-photo">
           <img src="./assets/photo-listening-v1.jpg" alt="설명을 들으며 집중하는 사람의 뒷모습" width="1200" height="1200" loading="lazy" decoding="async">
         </figure>
         <div class="journey-interlude-copy">
           <p class="section-label">이해에서 제작으로</p>
-          <h3>이제, 내 손으로<br>만드는 시간.</h3>
+          <h3>이제, 내 손으로<br>만드는 시간</h3>
           <p>무엇을 만들지 정했다면,<br>작은 화면 하나부터 시작합니다.<br>만들고, 확인하고, 다시 고치며.</p>
         </div>
       </aside>` : ""}`;
   }).join("");
 }
-
 function renderDeliverables(course) {
   const items = course.deliverables?.length ? course.deliverables : course.outcomes ?? [];
+  const symbols = [
+    '<rect x="18" y="12" width="84" height="52" rx="3"/><path d="M46 76h28M60 64v12M30 27h24M30 39h40"/><circle cx="86" cy="46" r="9"/><path d="m82 46 3 3 5-6"/>',
+    '<path d="M36 10h40l14 14v53H36zM76 10v16h14M25 22H17v55h9M46 42h29M46 53h29M46 64h18"/>',
+    '<rect x="10" y="25" width="32" height="38" rx="3"/><path d="M17 35h18M17 45h13M42 44h16"/><rect x="76" y="25" width="32" height="38" rx="3"/><path d="M84 35h16M84 45h11M64 39l-6 5 6 5M69 44h7"/>',
+    '<path d="M60 22c-12-9-27-11-44-7v54c17-4 32-2 44 7 12-9 27-11 44-7V15c-17-4-32-2-44 7ZM60 22v54M27 29l20 4M27 42l20 4M74 33l18-4M74 46l18-4"/>'
+  ];
+  const labels = ["내 계정", "제작 파일", "저장·공유", "수업 교재"];
   document.querySelector("[data-deliverables]").innerHTML = items.map((item, index) => `
-    <article><span>${String(index + 1).padStart(2, "0")}</span><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.body)}</p></article>`).join("");
+    <article class="deliverable-card">
+      <span class="deliverable-number">${String(index + 1).padStart(2, "0")}</span>
+      <div class="deliverable-symbol" aria-hidden="true"><svg viewBox="0 0 120 88" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">${symbols[index] || symbols[1]}</svg><span>${labels[index] || "결과물"}</span></div>
+      <h3>${headingText(item.title)}</h3><p>${escapeHTML(item.body)}</p>
+      ${index === 3 ? '<a class="deliverable-materials-link" href="#materials">실제 교재 보기 ↓</a>' : ""}
+    </article>`).join("");
 }
-
 function renderMaterialsVisuals(items = []) {
   document.querySelector("[data-materials-visuals]").innerHTML = items.map((item) => `
     <a class="material-preview" href="${escapeHTML(item.image)}" target="_blank" rel="noopener">
-      <figure><img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.alt)}" loading="lazy" decoding="async"><figcaption><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.body)}</p><span>이미지 크게 보기 ↗</span></figcaption></figure>
+      <figure><img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.alt)}" loading="lazy" decoding="async"><figcaption><h3>${headingText(item.title)}</h3><p>${escapeHTML(item.body)}</p><span>이미지 크게 보기 ↗</span></figcaption></figure>
     </a>`).join("");
 }
 
@@ -92,7 +114,23 @@ function renderPreparation(items = []) {
 
 function renderFaq(items = []) {
   document.querySelector("[data-faq]").innerHTML = items.map((item) => `
-    <details><summary>${escapeHTML(item.question)}</summary><p>${escapeHTML(item.answer)}</p></details>`).join("");
+    <details class="faq-item${item.highlight === true ? " faq-highlight" : ""}"><summary><span class="faq-marker" aria-hidden="true">Q</span><span class="faq-question">${escapeHTML(item.question)}</span></summary><p>${escapeHTML(item.answer)}</p></details>`).join("");
+}
+
+function renderInstructor(instructor = {}) {
+  text("[data-instructor-name]", instructor.name);
+  text("[data-instructor-role]", instructor.role);
+  text("[data-instructor-quote]", instructor.quote);
+  text("[data-instructor-summary]", instructor.summary);
+  const credits = Array.isArray(instructor.credits) ? instructor.credits : [];
+  if (credits.length) {
+    document.querySelector("[data-instructor-credits]").innerHTML = credits.map((credit) => `
+      <article><h3>${headingText(credit.title)}</h3><p>${escapeHTML(credit.detail)}</p></article>`).join("");
+  }
+  const additional = Array.isArray(instructor.additionalCredits) ? instructor.additionalCredits : [];
+  document.querySelector("[data-instructor-additional]").hidden = additional.length === 0;
+  document.querySelector("[data-instructor-additional-credits]").innerHTML = additional.map((credit) => `
+    <article><h3>${headingText(credit.title)}</h3><p>${escapeHTML(credit.detail)}</p></article>`).join("");
 }
 
 function renderOperations(operations = {}) {
@@ -127,8 +165,15 @@ export function renderLanding(course) {
   renderRequestExample(course.requestExample);
   renderTeachingMethod(course.teachingMethod ?? []);
   renderJourney(course.journey ?? []);
+  document.querySelectorAll('.curriculum-overview a[href^="#journey-"]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const step = document.getElementById(link.hash.slice(1));
+      if (step?.matches('details.journey-step')) step.open = true;
+    });
+  });
   renderDeliverables(course);
   renderMaterialsVisuals(course.materialsVisuals ?? []);
+  renderInstructor(course.instructor);
   renderPreparation(course.preparation);
   renderOperations(course.operations);
   renderFaq(course.faq ?? []);
