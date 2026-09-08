@@ -58,7 +58,17 @@ function renderJourney(items = []) {
       <div class="journey-summary"><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.body)}</p></div>
       <div class="journey-activities"><h4>직접 하는 일</h4><ul>${activities.map((activity) => `<li>${escapeHTML(activity)}</li>`).join("")}</ul></div>
       <div class="journey-result"><h4>이 단계에서 남는 것</h4><p>${escapeHTML(item.result)}</p></div>
-    </article>`;
+    </article>${index === 2 && items.length > 3 ? `
+      <aside class="journey-interlude" id="practice-break" aria-label="첫 제작을 시작하기 전에">
+        <figure class="listening-photo editorial-photo">
+          <img src="./assets/photo-listening-v1.jpg" alt="설명을 들으며 집중하는 사람의 뒷모습" width="1200" height="1200" loading="lazy" decoding="async">
+        </figure>
+        <div class="journey-interlude-copy">
+          <p class="section-label">이해에서 제작으로</p>
+          <h3>이제, 내 손으로<br>만드는 시간.</h3>
+          <p>무엇을 만들지 정했다면,<br>작은 화면 하나부터 시작합니다.<br>만들고, 확인하고, 다시 고치며.</p>
+        </div>
+      </aside>` : ""}`;
   }).join("");
 }
 

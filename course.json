@@ -6,6 +6,7 @@
   "description": "AI가 처음이어도 괜찮습니다. 기초를 이해하고, 내 웹페이지를 직접 만들고, 고쳐서 공유합니다. 수업이 끝난 뒤에도 새로운 일을 AI와 풀어갈 수 있도록, 질문부터 제작까지 한 번의 흐름을 경험합니다.",
   "cta": "사전 질문지 작성하기",
   "mode": "review",
+  "visualVariant": "photo-editorial-v1",
   "operations": {
     "date": null,
     "startTime": null,
@@ -225,9 +226,9 @@
     "eyebrow": "AI 입문자를 위한 오프라인 실습",
     "lead": "처음 배우는 AI로,\n내 웹페이지를 직접 만드는 하루.",
     "detail": "용어 설명에서 끝나지 않습니다. 원하는 기능을 말하고, 내 노트북에서 실행하고, 다른 사람에게 보여줄 링크까지 함께 만듭니다.",
-    "image": "./assets/oneday-maker-hero-v2.jpg",
-    "imageAlt": "기획 메모 옆 노트북에 웹페이지가 열려 있는 작업 공간 콘셉트",
-    "imageCaption": "웹페이지 제작을 표현한 AI 콘셉트 이미지"
+    "image": "./assets/photo-meeting-v1.jpg",
+    "imageAlt": "자연광이 드는 공간에서 노트북 앞에 둘러앉아 대화하는 사람들",
+    "imageCaption": "학습과 협업을 표현한 콘셉트 이미지입니다. 실제 수업 현장 사진은 아닙니다."
   },
   "teachingMethod": [
     {

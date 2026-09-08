@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#f7f3ea">
   <meta name="description" content="AI가 처음이어도 내 웹페이지를 직접 만들고 수정해 공유하는 DENIQ AI 원데이클래스">
   <title>DENIQ AI 원데이클래스</title>
-  <link rel="stylesheet" href="./landing.css?v=20260908-store">
-  <script type="module" src="./landing.js?v=20260908-store"></script>
+  <link rel="stylesheet" href="./landing.css?v=20260908-photo">
+  <script type="module" src="./landing.js?v=20260908-photo"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">본문으로 바로가기</a>
@@ -30,9 +30,12 @@
   <main id="main">
     <section class="hero" id="top">
       <div class="hero-copy">
+        <div class="hero-intro">
         <p class="eyebrow" data-hero-eyebrow>DENIQ AI 원데이클래스</p>
         <h1>질문이 제작이 되는 경험</h1>
         <p class="hero-lead" data-hero-lead>AI가 처음이어도 내 웹페이지를 직접 만들고, 원하는 모습으로 수정해 다른 사람에게 공유합니다.</p>
+        </div>
+        <div class="hero-support">
         <p class="hero-detail" data-hero-detail>한 번의 정답을 받는 수업이 아닙니다. 질문하고, 결과를 보고, 다시 고치는 과정을 내 손으로 경험합니다.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="./survey.html" data-course-cta>사전 질문지 작성하기</a>
@@ -44,12 +47,13 @@
           <div><dt>수업료</dt><dd data-operation="price">수업료 안내 예정</dd></div>
           <div><dt>인원</dt><dd data-operation="capacity">소규모 수업 예정</dd></div>
         </dl>
+        </div>
       </div>
       <figure class="hero-media">
-        <img src="./assets/deniq-editorial-web.jpg" alt="웹페이지를 함께 만드는 과정을 표현한 DENIQ 콘셉트 이미지" data-hero-image>
-        <figcaption data-hero-caption>수업의 제작 흐름을 표현한 콘셉트 이미지입니다.</figcaption>
+        <img src="./assets/photo-meeting-v1.jpg" alt="햇빛이 드는 공간에서 테이블에 둘러앉아 대화하는 사람들" width="1200" height="1600" fetchpriority="high" data-hero-image>
       </figure>
     </section>
+    <p class="photography-note section-shell" data-hero-caption>학습과 협업을 표현한 콘셉트 이미지입니다. 실제 수업 현장 사진은 아닙니다.</p>
 
     <section class="promise section-shell" aria-labelledby="promise-title">
       <p class="section-label">수업의 한 문장</p>
@@ -71,6 +75,24 @@
       </ol>
     </section>
 
+    <section class="method section-shell" id="method" aria-labelledby="method-title">
+      <div class="method-editorial">
+        <header class="section-heading">
+          <p class="section-label">수업 방식</p>
+          <h2 id="method-title">설명보다 먼저 해보고,<br>결과를 보며 고칩니다.</h2>
+        </header>
+        <figure class="method-photo editorial-photo">
+          <img src="./assets/photo-collaboration-v1.jpg" alt="자료를 펼쳐두고 서로 의견을 나누는 두 동료" width="1600" height="1200" loading="lazy" decoding="async">
+        </figure>
+        <p class="photo-side-note">질문하고, 함께 살펴보고, 다시 만들어보는 시간.</p>
+      </div>
+      <div class="method-list" data-teaching-method>
+        <article><span>01</span><div><h3>같이 만들기</h3><p>강사의 완성 화면을 구경하는 데서 끝내지 않고 각자의 페이지를 직접 만듭니다.</p></div></article>
+        <article><span>02</span><div><h3>판단하고 수정하기</h3><p>AI의 첫 결과를 그대로 쓰지 않고 목적과 화면을 확인하며 다음 요청을 정합니다.</p></div></article>
+        <article><span>03</span><div><h3>막힘을 해결하기</h3><p>오류가 나면 메시지를 읽고 원인을 좁혀 다시 시도하는 순서를 연습합니다.</p></div></article>
+      </div>
+    </section>
+
     <section class="transformation" id="results" aria-labelledby="results-title">
       <div class="section-shell">
         <header class="section-heading section-heading-light">
@@ -84,18 +106,6 @@
         </div>
         <p class="request-explanation" data-request-explanation>상황 · 원하는 결과 · 참고자료 · 확인 기준을 더해 실제로 만들고 확인할 수 있는 요청으로 바꿉니다.</p>
         <div class="outcome-grid" data-outcomes></div>
-      </div>
-    </section>
-
-    <section class="method section-shell" id="method" aria-labelledby="method-title">
-      <header class="section-heading">
-        <p class="section-label">수업 방식</p>
-        <h2 id="method-title">설명보다 먼저 해보고,<br>결과를 보며 고칩니다.</h2>
-      </header>
-      <div class="method-list" data-teaching-method>
-        <article><span>01</span><div><h3>같이 만들기</h3><p>강사의 완성 화면을 구경하는 데서 끝내지 않고 각자의 페이지를 직접 만듭니다.</p></div></article>
-        <article><span>02</span><div><h3>판단하고 수정하기</h3><p>AI의 첫 결과를 그대로 쓰지 않고 목적과 화면을 확인하며 다음 요청을 정합니다.</p></div></article>
-        <article><span>03</span><div><h3>막힘을 해결하기</h3><p>오류가 나면 메시지를 읽고 원인을 좁혀 다시 시도하는 순서를 연습합니다.</p></div></article>
       </div>
     </section>
 
@@ -120,8 +130,19 @@
       <div class="materials-visuals" data-materials-visuals></div>
     </section>
 
+    <section class="afterclass section-shell" id="afterclass" aria-labelledby="afterclass-title">
+      <div class="afterclass-copy">
+        <p class="section-label">수업에서 일상으로</p>
+        <h2 id="afterclass-title">다음 아이디어는,<br>내 일상에서.</h2>
+        <p>수업에서 익힌 질문과 수정의 순서를<br>내 업무와 관심사에도 이어가보세요.</p>
+      </div>
+      <figure class="afterclass-photo editorial-photo">
+        <img src="./assets/photo-everyday-v1.jpg" alt="공항 대기 공간에서 각자의 기기를 사용하는 사람들" width="1600" height="900" loading="lazy" decoding="async">
+      </figure>
+    </section>
+
     <section class="instructor section-shell" id="instructor" aria-labelledby="instructor-title">
-      <div class="profile-photo"><img src="./assets/logan-profile-bw.png" alt="LOGAN 흑백 상반신 프로필"><p>STUDIO DENIQ · LOGAN</p></div>
+      <div class="profile-photo"><img src="./assets/logan-profile-bw.png" alt="LOGAN 흑백 상반신 프로필" loading="lazy" decoding="async"><p>STUDIO DENIQ · LOGAN</p></div>
       <article class="profile-copy">
         <p class="section-label">강사</p>
         <h2 id="instructor-title">LOGAN</h2>
