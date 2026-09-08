@@ -86,7 +86,6 @@ button { font: inherit; }
 .hero-facts dd { margin: 8px 0 0; overflow-wrap: anywhere; font-size: 12px; line-height: 1.5; font-weight: 650; }
 .hero-media { position: relative; min-width: 0; min-height: 0; aspect-ratio: 3 / 4; margin: 0; overflow: hidden; background: var(--sand); border-left: 1px solid var(--line); }
 .hero-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
-.photography-note { margin-top: 14px; margin-bottom: 0; color: var(--muted); font-size: 11px; line-height: 1.6; text-align: right; }
 .editorial-photo { min-width: 0; margin: 0; overflow: hidden; background: var(--sand); }
 .editorial-photo img { width: 100%; height: auto; }
 .photo-side-note { margin: 14px 0 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
@@ -254,7 +253,6 @@ button { font: inherit; }
   .hero-support { grid-row: 3; padding: 24px 28px 32px; }
   .hero-detail { margin-top: 0; }
   .hero-actions { flex-direction: row; }
-  .photography-note { text-align: left; }
   .hero-facts { grid-template-columns: 1fr 1fr; }
   .hero-facts div:nth-child(2) { border-right: 0; }
   .hero-facts div:nth-child(-n+2) { border-bottom: 0; }
@@ -291,7 +289,6 @@ button { font: inherit; }
   .hero-facts div { padding: 14px 12px; }
   .hero-facts div:nth-child(odd) { padding-left: 0; }
   .hero-media { min-height: 0; aspect-ratio: 1; border-left: 0; border-top: 1px solid var(--line); }
-  .photography-note { margin-top: 12px; font-size: 10px; }
   .promise { padding-block: 72px; grid-template-columns: 1fr; }
   .promise > div { margin-top: 28px; padding: 28px 0 0; border-top: 1px solid var(--line); border-left: 0; }
   .promise h2 { font-size: 32px; }

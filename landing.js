@@ -111,7 +111,6 @@ export function renderLanding(course) {
   text("[data-hero-eyebrow]", course.hero?.eyebrow || course.title);
   text("[data-hero-lead]", course.hero?.lead || course.description);
   text("[data-hero-detail]", course.hero?.detail);
-  text("[data-hero-caption]", course.hero?.imageCaption || "수업의 제작 흐름을 표현한 콘셉트 이미지입니다.");
 
   const heroImage = document.querySelector("[data-hero-image]");
   const requestedImage = typeof course.hero?.image === "string" ? course.hero.image.trim() : "";
