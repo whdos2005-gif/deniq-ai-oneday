@@ -115,7 +115,7 @@ function renderInstructor(instructor = {}) {
   const credits = Array.isArray(instructor.credits) ? instructor.credits : [];
   if (credits.length) {
     document.querySelector("[data-instructor-credits]").innerHTML = credits.map((credit, index) => `
-      <li><span class="instructor-credit-number" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span><div><h3>${headingText(credit.title)}</h3><p>${escapeHTML(credit.detail)}</p></div></li>`).join("");
+      <li><span class="instructor-credit-number" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span><p class="instructor-credit-line"><strong class="instructor-credit-title">${escapeHTML(credit.title)}</strong><span aria-hidden="true"> · </span><span class="instructor-credit-detail">${escapeHTML(credit.detail)}</span></p></li>`).join("");
   }
 }
 

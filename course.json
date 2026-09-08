@@ -2,7 +2,7 @@
   "schemaVersion": "deniq-oneday-course/v1",
   "courseId": "deniq-ai-oneday",
   "title": "DENIQ AI 원데이클래스",
-  "designRevision": "yunha-v4",
+  "designRevision": "yunha-v5",
   "instructor": {
     "name": "LOGAN",
     "role": "Studio DENIQ 대표 · 아트 디렉터",
@@ -88,26 +88,6 @@
       {
         "title": "콘텐츠진흥원(KOCCA) 다큐",
         "detail": "신진감독 선정 · 〈Do Docs〉"
-      },
-      {
-        "title": "포항 AI영화제",
-        "detail": "공식 선정·GV · AI 애니메이션 〈별로 만든 도시〉"
-      },
-      {
-        "title": "제28회 호미영화제",
-        "detail": "공식 초청 · AI 애니메이션 〈별로 만든 도시〉"
-      },
-      {
-        "title": "KOCCA 지원 AI 애니메이션",
-        "detail": "AI 아티스트 참여 · 2027 글로벌 OTT 공개 예정"
-      },
-      {
-        "title": "제12회 신한 29초 영화제",
-        "detail": "한국경제신문사 사장상 · 〈내 꿈은,〉"
-      },
-      {
-        "title": "그룹전 「공존감각」 · 성수 뎁센드 갤러리",
-        "detail": "〈생성된 생산〉(공동연출) · 〈서브루틴 11〉"
       }
     ],
     "additionalCredits": []
@@ -287,17 +267,44 @@
   "survey": {
     "surveyVersion": "deniq-oneday-survey/v2",
     "aiToolOptions": [
-      { "value": "none", "label": "처음이에요" },
-      { "value": "chatgpt", "label": "ChatGPT" },
-      { "value": "claude", "label": "Claude" },
-      { "value": "gemini", "label": "Gemini" },
-      { "value": "other", "label": "기타 도구" }
+      {
+        "value": "none",
+        "label": "처음이에요"
+      },
+      {
+        "value": "chatgpt",
+        "label": "ChatGPT"
+      },
+      {
+        "value": "claude",
+        "label": "Claude"
+      },
+      {
+        "value": "gemini",
+        "label": "Gemini"
+      },
+      {
+        "value": "other",
+        "label": "기타 도구"
+      }
     ],
     "aiTaskOptions": [
-      { "value": "conversation-writing", "label": "대화하거나 글쓰기" },
-      { "value": "image-video", "label": "이미지·영상 만들기" },
-      { "value": "web-coding", "label": "웹페이지·코딩" },
-      { "value": "agent-automation", "label": "에이전트·자동화" }
+      {
+        "value": "conversation-writing",
+        "label": "대화하거나 글쓰기"
+      },
+      {
+        "value": "image-video",
+        "label": "이미지·영상 만들기"
+      },
+      {
+        "value": "web-coding",
+        "label": "웹페이지·코딩"
+      },
+      {
+        "value": "agent-automation",
+        "label": "에이전트·자동화"
+      }
     ],
     "open": false,
     "endpoint": null,

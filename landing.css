@@ -420,10 +420,6 @@ body { font-size: var(--body-size); }
 .section-heading h2 { margin-top: 20px; }
 .section-intro { grid-column: 1; font-size: var(--body-size); line-height: 1.7; max-width: 36em; }
 
-.section-heading.audience-heading { grid-template-columns: minmax(0, 1fr) 260px; align-items: center; gap: 36px; }
-.audience-heading > div { min-width: 0; }
-.audience-photo { width: 260px; height: 195px; }
-.audience-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .audience-list { margin-top: 44px; }
 .audience-list li { justify-content: flex-start; padding: 28px; gap: 24px; }
 .audience-list span { font-size: var(--label-size); line-height: 1.5; }
@@ -511,8 +507,6 @@ body { font-size: var(--body-size); }
 }
 @media (max-width: 980px) {
   :root { --content-gutter: 28px; --body-size: 17px; --dense-size: 16px; }
-  .section-heading.audience-heading { grid-template-columns: minmax(0, 1fr) 240px; gap: 24px; }
-  .audience-photo { width: 240px; height: 180px; }
   .hero { width: 100%; }
   .hero-media { height: auto; aspect-ratio: 4 / 3; }
   .hero-intro { padding: 36px var(--content-gutter) 28px; }
@@ -555,8 +549,6 @@ body { font-size: var(--body-size); }
   .flow-line { gap: 8px; }
   .flow-step { white-space: nowrap; }
   .section-heading h2 { margin-top: 18px; }
-  .section-heading.audience-heading { grid-template-columns: 1fr; gap: 20px; }
-  .audience-photo { width: 160px; height: 120px; justify-self: end; }
   .audience-list { margin-top: 32px; }
   .audience-list li { padding: 24px 0; min-height: 0; gap: 16px; }
   .audience-list p { font-size: 21px; line-height: 1.5; }
@@ -650,20 +642,24 @@ details.journey-step { display: block; min-height: 0; scroll-margin-top: 96px; b
 /* A distinct everyday-use transition precedes the credit-led instructor section. */
 .afterclass { width: 100%; margin-block: 24px 96px; padding: 64px max(var(--content-gutter), calc((100vw - var(--page)) / 2)); background: var(--blue-wash); border-block: 1px solid var(--line); }
 .afterclass-copy h2 { margin-top: 20px; }
-.instructor { grid-template-columns: 260px minmax(0, 1fr); align-items: start; gap: 48px; padding-top: 36px; padding-bottom: 40px; border-top: 3px solid var(--blue); border-bottom: 1px solid var(--line); }
-.profile-photo { min-height: 0; height: 340px; border: 0; }
-.profile-copy { min-height: 0; padding: 0; }
-.profile-copy h2 { margin-top: 16px; font-size: 40px; }
-.profile-copy > p.profile-role { margin-top: 14px; color: var(--blue); font-size: 16px; font-weight: 600; }
-.profile-quote { max-width: 36em; margin: 28px 0 0; padding: 0 0 0 20px; border-left: 3px solid var(--blue); font-size: 24px; line-height: 1.5; font-weight: 500; letter-spacing: -.02em; }
+.instructor { grid-template-columns: 220px minmax(0, 1fr); align-items: start; gap: 36px; padding-top: 28px; padding-bottom: 28px; border-top: 3px solid var(--blue); border-bottom: 1px solid var(--line); }
+.profile-overview { min-width: 0; }
+.profile-photo { width: 200px; min-height: 0; height: 220px; border: 0; }
+.profile-copy { min-height: 0; padding: 20px 0 0; }
+.profile-copy h2 { margin-top: 10px; font-size: 32px; }
+.profile-copy > p.profile-role { margin-top: 12px; color: var(--blue); font-size: 15px; line-height: 1.5; font-weight: 600; }
+.profile-quote { max-width: 36em; margin: 20px 0 0; padding: 0 0 0 14px; border-left: 3px solid var(--blue); font-size: 17px; line-height: 1.5; font-weight: 500; letter-spacing: -.02em; }
 .profile-quote::before { content: "“"; color: var(--blue); }
 .profile-quote::after { content: "”"; color: var(--blue); }
-.profile-copy > p.profile-summary { max-width: 46em; margin-top: 22px; font-size: var(--body-size); }
-.instructor-credits { max-width: 900px; margin: 32px 0 0; padding: 0; display: block; list-style: none; border-top: 1px solid var(--line); }
-.instructor-credits > li { padding: 20px 0; display: grid; grid-template-columns: 44px minmax(0, 1fr); align-items: baseline; gap: 20px; border-bottom: 1px solid var(--line); }
-.instructor-credit-number { color: var(--blue); font-size: 16px; line-height: 1.5; font-weight: 650; font-variant-numeric: tabular-nums; }
-.instructor-credits h3 { margin: 0; font-size: 19px; line-height: 1.5; letter-spacing: -.02em; }
-.instructor-credits p { margin: 8px 0 0; color: var(--muted); font-size: 15px; line-height: 1.65; }
+.profile-about { margin-top: 16px; }
+.profile-about > summary { width: fit-content; min-height: 44px; padding-block: 12px; color: var(--blue); font-size: 14px; line-height: 1.5; cursor: pointer; }
+.profile-about .profile-summary { margin: 12px 0 0; color: var(--muted); font-size: 16px; line-height: 1.7; }
+.instructor-credits { min-width: 0; max-width: none; margin: 0; padding: 0; display: block; list-style: none; border-top: 1px solid var(--line); }
+.instructor-credits > li { padding: 4px 0; display: grid; grid-template-columns: 26px minmax(0, 1fr); align-items: baseline; gap: 10px; border-bottom: 1px solid var(--line); }
+.instructor-credit-number { color: var(--blue); font-size: 14px; line-height: 1.45; font-weight: 650; font-variant-numeric: tabular-nums; }
+.instructor-credit-line { min-width: 0; margin: 0; color: var(--ink); font-size: 14px; line-height: 1.45; word-break: keep-all; overflow-wrap: break-word; }
+.instructor-credit-title { font-weight: 600; }
+.instructor-credit-detail { color: var(--muted); }
 .preparation-panel li { position: relative; padding-left: 30px; }
 .preparation-panel li::before { content: "✓"; position: absolute; top: 15px; left: 0; color: var(--blue); font-size: 18px; line-height: 1.6; font-weight: 650; }
 .payment-panel h3, .refund-row h3 { font-size: 22px; }
@@ -675,19 +671,22 @@ details.journey-step { display: block; min-height: 0; scroll-margin-top: 96px; b
 .faq-list .faq-item summary::after { color: inherit; }
 .faq-list .faq-item p { padding-left: 44px; }
 @media (max-width: 980px) {
-  .instructor { grid-template-columns: 200px minmax(0, 1fr); gap: 32px; }
-  .profile-photo { height: 270px; }
+  .instructor { grid-template-columns: 1fr; gap: 28px; }
+  .profile-overview { display: grid; grid-template-columns: 140px minmax(0, 1fr); align-items: start; gap: 24px; }
+  .profile-photo { width: 140px; height: 180px; }
+  .profile-copy { padding: 0; }
+  .instructor-credits > li { padding-block: 10px; }
+  .instructor-credit-line { font-size: 15px; line-height: 1.6; }
 }
 @media (max-width: 760px) {
   .afterclass { margin-block: 16px 64px; padding-block: 40px; }
   .instructor { grid-template-columns: 1fr; gap: 24px; padding-top: 24px; }
-  .profile-photo { width: 180px; height: 230px; }
-  .profile-photo p { padding: 12px; font-size: 12px; }
-  .profile-copy h2 { font-size: 32px; }
-  .profile-quote { font-size: 22px; }
-  .instructor-credits h3 { font-size: 18px; }
-  .instructor-credits p { font-size: 15px; }
-  .instructor-credits > li { grid-template-columns: 32px minmax(0, 1fr); gap: 14px; }
+  .profile-overview { grid-template-columns: 110px minmax(0, 1fr); gap: 18px; }
+  .profile-photo { width: 110px; height: 145px; }
+  .profile-copy h2 { font-size: 28px; }
+  .profile-quote { margin-top: 16px; font-size: 16px; }
+  .instructor-credit-line { font-size: 16px; }
+  .instructor-credits > li { grid-template-columns: 26px minmax(0, 1fr); gap: 10px; }
   .faq-list .faq-item summary { grid-template-columns: 24px minmax(0, 1fr); gap: 12px; }
   .faq-list .faq-item p { padding-left: 36px; }
 }
