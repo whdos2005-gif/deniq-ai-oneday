@@ -2,37 +2,115 @@
   "schemaVersion": "deniq-oneday-course/v1",
   "courseId": "deniq-ai-oneday",
   "title": "DENIQ AI 원데이클래스",
-  "designRevision": "yunha-v3",
+  "designRevision": "yunha-v4",
   "instructor": {
-    "name": "LOGAN · 류형래",
+    "name": "LOGAN",
     "role": "Studio DENIQ 대표 · 아트 디렉터",
     "quote": "AI가 아이디어를 실제 결과물로 바꾸는 전 과정을 설계합니다",
     "summary": "미디어아트와 영상을 시작으로 이미지·영상·브랜딩을 연결하는 비주얼 디렉션과 IP 개발을 이어왔습니다. 현재 Studio DENIQ에서 AI를 결합한 비주얼 제작 과정을 설계합니다.",
     "credits": [
-      {"title": "Cannes World Film Festival", "detail": "Finalist · 〈LEVIATHAN〉"},
-      {"title": "New York International Film Awards", "detail": "Winner · 〈LEVIATHAN〉"},
-      {"title": "Hollywood International Indie Film & Screenplay Awards", "detail": "Award Winner · 〈LEVIATHAN〉"},
-      {"title": "IndieFEST Film Awards", "detail": "Award of Excellence · 〈LEVIATHAN〉 Movie Trailer"},
-      {"title": "제5회 서울국제AI영화제", "detail": "3개 부문 공식 노미네이트 · 〈LEVIATHAN〉"},
-      {"title": "2025 경기청년갭이어", "detail": "경기도지사상 · AI 미디어아트 〈생성된 생산〉"},
-      {"title": "2026 서울디자인페스티벌", "detail": "영 디자이너 공식 선정 · STUDIO DENIQ 〈MOIRÉ〉"},
-      {"title": "제10회 서울국제 29초 영화제", "detail": "서울특별시장상 · 〈꼭 같이오자,〉 연출·촬영"},
-      {"title": "2026 부산다큐필름페스티벌", "detail": "경쟁부문 상영작 선정 · 〈생성된 생산〉"},
-      {"title": "콘텐츠진흥원(KOCCA) 다큐", "detail": "신진감독 선정 · 〈Do Docs〉"},
-      {"title": "제12회 신한 29초 영화제", "detail": "한국경제신문사 사장상 · 〈내 꿈은,〉"},
-      {"title": "포항 AI영화제", "detail": "공식 선정·GV · AI 애니메이션 〈별로 만든 도시〉"}
+      {
+        "title": "Cannes World Film Festival",
+        "detail": "Finalist · 〈LEVIATHAN〉"
+      },
+      {
+        "title": "New York International Film Awards (NYIFA)",
+        "detail": "Winner · 〈LEVIATHAN〉"
+      },
+      {
+        "title": "New York Film & Cinematography Awards",
+        "detail": "Honorable Mention · 〈LEVIATHAN〉"
+      },
+      {
+        "title": "Hollywood International Indie Film & Screenplay Awards",
+        "detail": "Award Winner · 〈LEVIATHAN〉"
+      },
+      {
+        "title": "California · IndieFEST Film Awards",
+        "detail": "Award of Excellence · 〈LEVIATHAN〉 (Movie Trailer)"
+      },
+      {
+        "title": "Hong Kong · FutureFilmFest 2026",
+        "detail": "선정 · 〈LEVIATHAN〉 (AI Shorts – Open Category)"
+      },
+      {
+        "title": "Los Angeles · Global Film Festival Awards",
+        "detail": "Official Selection · 〈LEVIATHAN〉 (Best Trailer)"
+      },
+      {
+        "title": "Barcelona · WSXA International Film Festival",
+        "detail": "Official Selection · 〈LEVIATHAN〉"
+      },
+      {
+        "title": "Tokyo Film & Screenplay Awards",
+        "detail": "Honorable Mention · 〈LEVIATHAN〉"
+      },
+      {
+        "title": "Seattle AI Film Festival",
+        "detail": "Official Selection 및 온라인 상영 · 〈LEVIATHAN〉"
+      },
+      {
+        "title": "Anatolia International Film Festival",
+        "detail": "Finalist · 〈LEVIATHAN〉"
+      },
+      {
+        "title": "제5회 서울국제AI영화제(SIAFF)",
+        "detail": "3개 부문 공식 노미네이트 · 〈LEVIATHAN〉 (Best Trailer / Best AI Experimental Short / Best First-Time Filmmaker AI Short)"
+      },
+      {
+        "title": "한국AI영화감독협회(KAIFD)",
+        "detail": "정회원"
+      },
+      {
+        "title": "2025 경기청년갭이어",
+        "detail": "경기도지사상 · AI 미디어아트 〈생성된 생산〉 공동연출"
+      },
+      {
+        "title": "2026 부산다큐필름페스티벌",
+        "detail": "경쟁부문 상영작 선정 · 〈생성된 생산〉 공동연출"
+      },
+      {
+        "title": "2026 서울디자인페스티벌",
+        "detail": "영 디자이너 공식 선정 및 COEX 전시 · STUDIO DENIQ 〈MOIRÉ〉"
+      },
+      {
+        "title": "제10회 서울국제 29초 영화제",
+        "detail": "서울특별시장상 · 〈꼭 같이오자,〉 연출·촬영"
+      },
+      {
+        "title": "제9회 제주혼듸독립영화제",
+        "detail": "혼듸넥스트(AI) 비경쟁부문 상영작 선정 · 〈생성된 생산〉 공동연출"
+      },
+      {
+        "title": "2026 제3회 「마침 내 극장」",
+        "detail": "공식 상영작 선정 · 〈생성된 생산〉 공동연출"
+      },
+      {
+        "title": "콘텐츠진흥원(KOCCA) 다큐",
+        "detail": "신진감독 선정 · 〈Do Docs〉"
+      },
+      {
+        "title": "포항 AI영화제",
+        "detail": "공식 선정·GV · AI 애니메이션 〈별로 만든 도시〉"
+      },
+      {
+        "title": "제28회 호미영화제",
+        "detail": "공식 초청 · AI 애니메이션 〈별로 만든 도시〉"
+      },
+      {
+        "title": "KOCCA 지원 AI 애니메이션",
+        "detail": "AI 아티스트 참여 · 2027 글로벌 OTT 공개 예정"
+      },
+      {
+        "title": "제12회 신한 29초 영화제",
+        "detail": "한국경제신문사 사장상 · 〈내 꿈은,〉"
+      },
+      {
+        "title": "그룹전 「공존감각」 · 성수 뎁센드 갤러리",
+        "detail": "〈생성된 생산〉(공동연출) · 〈서브루틴 11〉"
+      }
     ],
-    "additionalCredits": [
-      {"title": "New York Film & Cinematography Awards", "detail": "Honorable Mention · 〈LEVIATHAN〉"},
-      {"title": "Global Film Festival Awards · Los Angeles", "detail": "Official Selection · 〈LEVIATHAN〉 Best Trailer"},
-      {"title": "WSXA International Film Festival · Barcelona", "detail": "Official Selection · 〈LEVIATHAN〉"},
-      {"title": "Tokyo Film & Screenplay Awards", "detail": "Honorable Mention · 〈LEVIATHAN〉"},
-      {"title": "Seattle AI Film Festival", "detail": "Official Selection 및 온라인 상영 · 〈LEVIATHAN〉"},
-      {"title": "Anatolia International Film Festival", "detail": "Finalist · 〈LEVIATHAN〉"},
-      {"title": "제9회 제주혼듸독립영화제", "detail": "혼듸넥스트(AI) 비경쟁부문 상영작 선정 · 〈생성된 생산〉"},
-      {"title": "제28회 호미영화제", "detail": "공식 초청 · AI 애니메이션 〈별로 만든 도시〉"},
-      {"title": "그룹전 〈공존감각〉", "detail": "성수 뎁센드 갤러리 · 〈생성된 생산〉, 〈서브루틴 11〉"}
-    ]
+    "additionalCredits": []
   },
   "slogan": "질문이 제작이 되는 경험",
   "description": "AI가 처음이어도 괜찮습니다. 기초를 이해하고, 내 웹페이지를 직접 만들고, 고쳐서 공유합니다. 수업이 끝난 뒤에도 새로운 일을 AI와 풀어갈 수 있도록, 질문부터 제작까지 한 번의 흐름을 경험합니다.",
@@ -301,10 +379,10 @@
   ],
   "materialsVisuals": [
     {
-      "image": "./assets/class-prompt-guide.jpg",
-      "title": "첫 제작은 준비된 요청문으로",
-      "body": "제목·소개·내용·색·링크를 내 것으로 바꿔 시작합니다. 막연한 빈 입력창 앞에서 고민하지 않도록 실제 교재에 예시를 준비했습니다.",
-      "alt": "최종 강의자료 52쪽: 개인화 항목을 바꿔 쓰는 첫 웹 프로그램 제작 요청 예시"
+      "image": "./assets/class-core-guide.jpg",
+      "title": "프롬프트 정리도 AI에게 맡기세요",
+      "body": "하고 싶은 일을 평소 말로 적으면, AI가 C.O.R.E. 구조의 요청문으로 정리합니다. 내 의도와 조건이 맞는지 확인한 뒤 실행하는 순서까지 실제 교재에서 안내합니다.",
+      "alt": "최종 강의자료 87쪽: 프롬프트 정리도 AI에게 맡길 수 있습니다. CORE 요청문과 요청 적기·정리·확인·실행 순서"
     },
     {
       "image": "./assets/class-deploy-guide.jpg",
