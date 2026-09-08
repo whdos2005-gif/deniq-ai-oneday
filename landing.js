@@ -27,17 +27,6 @@ export function formatSchedule(operations = {}) {
   return [String(operations.date).trim(), time].filter(Boolean).join(" · ");
 }
 
-export async function copyAccountNumber(account, clipboard = globalThis.navigator?.clipboard) {
-  const value = typeof account === "string" ? account.trim() : "";
-  if (!value || typeof clipboard?.writeText !== "function") return false;
-  try {
-    await clipboard.writeText(value);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
 function renderAudience(items = []) {
   if (!items.length) return;
   document.querySelector("[data-audience-list]").innerHTML = items.map((item, index) => `
@@ -102,29 +91,8 @@ function renderOperations(operations = {}) {
   text('[data-operation="price"]', formatPrice(operations.priceKRW));
   text('[data-operation="capacity"]', operations.capacity || operations.capacityHint || "인원 안내 예정");
 
-  const bank = operations.bankTransfer && typeof operations.bankTransfer === "object" ? operations.bankTransfer : {};
-  text('[data-bank="bank"]', bank.bank || "안내 예정");
-  text('[data-bank="account"]', bank.account || "안내 예정");
-  text('[data-bank="holder"]', bank.holder || "안내 예정");
-  text("[data-depositor-guide]", bank.depositorGuide || "입금자명 안내는 운영 정보 확정 후 표시됩니다.");
   text("[data-refund-policy]", operations.refundPolicy || "환불 기준 안내 예정");
   text("[data-refund-after]", operations.refundAfterDeadline || "");
-
-  const copyButton = document.querySelector("[data-copy-account]");
-  const copyStatus = document.querySelector("[data-copy-status]");
-  const account = typeof bank.account === "string" ? bank.account.trim() : "";
-  copyButton.hidden = !account;
-  if (account) {
-    copyButton.addEventListener("click", async () => {
-      const copied = await copyAccountNumber(account);
-      copyStatus.textContent = copied ? "계좌번호를 복사했습니다." : "복사하지 못했습니다. 위 계좌번호를 직접 선택해 복사해주세요.";
-    });
-  }
-
-  const settled = Number(operations.priceKRW) > 0 && typeof operations.date === "string" && operations.date.trim();
-  text("[data-payment-caution]", settled
-    ? "표시된 수업료·일시·예금주를 모두 확인한 후 입금해주세요."
-    : "수업료와 일정을 확인한 후 입금해주세요.");
 }
 
 export function renderLanding(course) {
@@ -156,7 +124,7 @@ export function renderLanding(course) {
   renderOperations(course.operations);
   renderFaq(course.faq ?? []);
   text("[data-application-status]", canSubmitLive(course)
-    ? "사전 질문지 제출은 참가·입금 확정이 아닙니다. 최종 안내를 확인해주세요."
+    ? "사전 질문지 제출은 참가 확정이 아닙니다. 최종 안내를 확인해주세요."
     : "현재 사전 질문지는 검토용이며 실제 접수되지 않습니다.");
 }
 

@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#f7f3ea">
   <meta name="description" content="AI가 처음이어도 내 웹페이지를 직접 만들고 수정해 공유하는 DENIQ AI 원데이클래스">
   <title>DENIQ AI 원데이클래스</title>
-  <link rel="stylesheet" href="./landing.css?v=20260908-revision">
-  <script type="module" src="./landing.js?v=20260908-revision"></script>
+  <link rel="stylesheet" href="./landing.css?v=20260908-store">
+  <script type="module" src="./landing.js?v=20260908-store"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">본문으로 바로가기</a>
@@ -20,12 +20,12 @@
     <nav class="site-nav" aria-label="페이지 메뉴">
       <a href="#method">수업 방식</a>
       <a href="#curriculum">상세 과정</a>
-      <a href="#payment">준비·입금</a>
+      <a href="#payment">준비·신청</a>
     </nav>
     <a class="header-cta" href="./survey.html" data-course-cta>사전 질문지 작성하기</a>
   </header>
 
-  <p class="config-alert" data-config-alert role="status" hidden>최신 운영 정보를 불러오지 못했습니다. 일시·수업료를 확인하기 전에는 입금하지 말아주세요.</p>
+  <p class="config-alert" data-config-alert role="status" hidden>최신 수업 정보를 불러오지 못했습니다. 잠시 후 다시 확인해주세요.</p>
 
   <main id="main">
     <section class="hero" id="top">
@@ -36,7 +36,7 @@
         <p class="hero-detail" data-hero-detail>한 번의 정답을 받는 수업이 아닙니다. 질문하고, 결과를 보고, 다시 고치는 과정을 내 손으로 경험합니다.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="./survey.html" data-course-cta>사전 질문지 작성하기</a>
-          <a class="button button-quiet" href="#payment">일정·입금 안내 보기</a>
+          <a class="button button-quiet" href="#payment">준비물·신청 안내 보기</a>
         </div>
         <dl class="hero-facts" aria-label="수업 운영 정보">
           <div><dt>일시</dt><dd data-operation="schedule">일정 안내 예정</dd></div>
@@ -135,7 +135,7 @@
       <div class="section-shell">
         <header class="section-heading">
           <p class="section-label">준비와 등록 안내</p>
-          <h2 id="logistics-title">오실 준비부터<br>입금 전 확인까지.</h2>
+          <h2 id="logistics-title">수업 준비와<br>신청 안내.</h2>
         </header>
         <div class="logistics-grid">
           <article class="preparation-panel">
@@ -143,16 +143,9 @@
             <ul data-preparation><li>실습에 사용할 개인 노트북과 충전기</li></ul>
           </article>
           <article class="payment-panel" id="bank">
-            <h3>입금 안내</h3>
-            <dl class="bank-details">
-              <div><dt>은행</dt><dd data-bank="bank">안내 예정</dd></div>
-              <div><dt>계좌번호</dt><dd><span class="selectable" data-bank="account">안내 예정</span><button type="button" class="copy-button" data-copy-account hidden>계좌번호 복사</button></dd></div>
-              <div><dt>예금주</dt><dd data-bank="holder">안내 예정</dd></div>
-            </dl>
-            <p class="copy-status" data-copy-status aria-live="polite"></p>
-            <p class="depositor-guide" data-depositor-guide>입금자명 안내는 운영 정보 확정 후 표시됩니다.</p>
-            <p class="payment-caution" data-payment-caution>수업료와 일정을 확인한 후 입금해주세요.</p>
-            <p class="payment-scope">계좌 이체로 안내합니다. 입금 확인은 주최 측이 개별 안내합니다.</p>
+            <h3>신청 오픈 예정</h3>
+            <p class="depositor-guide">수강 신청은 스마트스토어에서 진행할 예정입니다.</p>
+            <p class="payment-scope">신청 페이지가 준비되면 이곳에서 안내합니다.</p>
           </article>
         </div>
         <div class="refund-row">
@@ -181,6 +174,6 @@
 
   <footer class="site-footer"><div class="brand"><svg class="brand-mark" viewBox="0 0 128 120" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M0 0h40c42.5 0 72 25.3 72 60s-29.5 60-72 60H0V0Zm18 5v110h22c33.2 0 55-23.4 55-55S73.2 5 40 5H18Z"></path><path fill="currentColor" d="M57 73h18l53 47h-20L57 73Z"></path></svg><span>studio <strong>DENIQ</strong></span></div><p>질문이 제작이 되는 경험</p></footer>
 
-  <noscript><p class="noscript-message">최신 일정·수업료·입금 정보를 확인하려면 JavaScript를 켜주세요. 확인 전에는 입금하지 말아주세요.</p></noscript>
+  <noscript><p class="noscript-message">현재는 신청 오픈 전입니다. 최신 수업 정보를 보려면 JavaScript를 켜주세요.</p></noscript>
 </body>
 </html>
