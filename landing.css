@@ -397,6 +397,7 @@ body { font-size: var(--body-size); }
 .hero-facts div { padding: 16px 14px; }
 .hero-facts dt { font-size: var(--meta-size); line-height: 1.5; }
 .hero-facts dd { font-size: 17px; line-height: 1.55; margin-top: 8px; overflow-wrap: normal; }
+.hero-facts [data-operation="venue"] { white-space: pre-line; }
 .hero-media { height: clamp(680px, calc(100svh - 80px), 860px); aspect-ratio: auto; }
 .hero-media img { object-position: center 53%; }
 

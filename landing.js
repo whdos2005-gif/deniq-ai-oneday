@@ -121,7 +121,7 @@ function renderInstructor(instructor = {}) {
 
 function renderOperations(operations = {}) {
   text('[data-operation="schedule"]', formatSchedule(operations));
-  text('[data-operation="venue"]', operations.venue || operations.venueHint || "장소 안내 예정");
+  text('[data-operation="venue"]', (operations.venue || operations.venueHint || "장소 안내 예정").replace(/\s+도보\s+/, '\n도보 '));
   text('[data-operation="price"]', formatPrice(operations.priceKRW));
   text('[data-operation="capacity"]', operations.capacity || operations.capacityHint || "인원 안내 예정");
 
