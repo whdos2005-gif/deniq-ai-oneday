@@ -96,7 +96,8 @@
   "slogan": "질문이 제작이 되는 경험",
   "description": "AI가 처음이어도 괜찮습니다. 기초를 이해하고, 내 웹페이지를 직접 만들고, 고쳐서 공유합니다. 수업이 끝난 뒤에도 새로운 일을 AI와 풀어갈 수 있도록, 질문부터 제작까지 한 번의 흐름을 경험합니다.",
   "cta": "사전 질문지 작성하기",
-  "mode": "review",
+  "mode": "live",
+  "adminUrl": "https://deniq-oneday-intake.whdos2005.workers.dev/admin",
   "visualVariant": "photo-editorial-v1",
   "operations": {
     "date": "10월 11일 · 10월 18일 (일)",
@@ -329,8 +330,8 @@
         "label": "에이전트·자동화"
       }
     ],
-    "open": false,
-    "endpoint": null,
+    "open": true,
+    "endpoint": "https://deniq-oneday-intake.whdos2005.workers.dev/api/survey",
     "title": "원데이클래스 사전 질문지",
     "intro": "먼저 참여할 회차를 선택하고, 어떤 일을 하며 무엇을 배워보고 싶은지 알려주세요.",
     "learningGoalOptions": [
