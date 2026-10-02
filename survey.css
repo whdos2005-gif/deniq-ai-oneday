@@ -218,3 +218,5 @@ textarea:focus { border-color: var(--blue-soft); outline: 1px solid var(--blue-s
   .brand-lockup strong { margin-left: 0; font-size: 15px; }
   .topbar-label { padding-inline: 6px; font-size: 8px; }
 }
+.bot-field { position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden; }
+.session-options .option-label { font-size:clamp(20px,3vw,32px);line-height:1.45; }

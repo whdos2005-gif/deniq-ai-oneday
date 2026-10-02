@@ -3,6 +3,7 @@
   "courseId": "deniq-ai-oneday",
   "title": "DENIQ AI 원데이클래스",
   "designRevision": "yunha-v5",
+  "operationsRevision": "october-intake-20261002",
   "instructor": {
     "name": "LOGAN",
     "role": "Studio DENIQ 대표 · 아트 디렉터",
@@ -98,27 +99,49 @@
   "mode": "review",
   "visualVariant": "photo-editorial-v1",
   "operations": {
-    "date": "9월 13일",
-    "startTime": null,
-    "endTime": null,
-    "venue": "시그니엘",
-    "venueHint": "잠실 · 세부 장소 미정",
-    "capacity": null,
-    "capacityHint": "8~12명 소규모 진행 예정",
-    "priceKRW": 400000,
-    "contactUrl": null,
+    "date": "10월 11일 · 10월 18일 (일)",
+    "startTime": "15:00",
+    "endTime": "19:00",
+    "venue": "압구정로데오역 도보 5분",
+    "venueHint": "상세 장소는 참가자에게 개별 안내합니다.",
+    "capacity": "회차당 8명 내외",
+    "capacityHint": "소규모 실습 수업",
+    "priceKRW": 350000,
+    "contactUrl": "mailto:contact@studiodeniq.com",
     "paymentUrl": null,
-    "bankTransfer": null,
-    "registrationStatus": "coming_soon",
+    "bankTransfer": {
+      "bank": "신한은행",
+      "account": "100-030-375974",
+      "holder": "대성컨템포러리"
+    },
+    "registrationStatus": "open",
     "refundPolicy": "수업일 2주 전까지 취소 시 전액 환불",
-    "refundAfterDeadline": "이후 취소에 대한 세부 환불 기준과 신청 방법은 모집 일정 확정 시 함께 안내합니다."
+    "refundAfterDeadline": "이후 취소에 대한 세부 환불 기준과 신청 방법은 모집 일정 확정 시 함께 안내합니다.",
+    "durationHours": 4,
+    "sessions": [
+      {
+        "id": "2026-10-11",
+        "label": "10월 11일 (일)",
+        "startAt": "2026-10-11T15:00:00+09:00",
+        "endAt": "2026-10-11T19:00:00+09:00"
+      },
+      {
+        "id": "2026-10-18",
+        "label": "10월 18일 (일)",
+        "startAt": "2026-10-18T15:00:00+09:00",
+        "endAt": "2026-10-18T19:00:00+09:00"
+      }
+    ]
   },
   "privacy": {
     "purpose": "원데이클래스 수업 준비와 참여자의 학습 희망 파악",
-    "controller": null,
-    "retention": null,
-    "contact": null,
-    "noticeStatus": "pending"
+    "controller": "STUDIO DENIQ",
+    "retention": "참여 회차 수업 종료 후 90일 보관 후 삭제. 복구용 백업은 저장소 정책에 따라 최대 30일 내 만료",
+    "contact": "contact@studiodeniq.com",
+    "noticeStatus": "confirmed",
+    "items": "참여 회차, 이름, 나이, 직업·직무, AI 사용 경험, 학습 희망 내용",
+    "refusal": "동의를 거부할 수 있으며, 동의하지 않으면 사전질문지를 제출할 수 없습니다.",
+    "policyVersion": "oneday-privacy-20261002"
   },
   "audience": [
     "AI를 써본 적이 없어, 무엇부터 시작해야 할지 알고 싶은 분",
@@ -257,7 +280,7 @@
     },
     {
       "question": "수강 신청과 결제는 어떻게 하나요?",
-      "answer": "수강 신청은 스마트스토어에서 진행할 예정입니다. 신청 페이지가 준비되면 이곳에서 안내합니다. 현재는 신청 오픈 전입니다."
+      "answer": "참여할 회차를 선택해 사전 질문지를 작성한 뒤, 안내된 신한은행 계좌로 수강료 35만원을 입금해주세요. 입금 확인과 참가 확정, 상세 장소는 주최 측에서 개별 안내합니다."
     },
     {
       "question": "취소와 환불은 어떻게 되나요?",
@@ -265,7 +288,7 @@
     }
   ],
   "survey": {
-    "surveyVersion": "deniq-oneday-survey/v2",
+    "surveyVersion": "deniq-oneday-survey/v3",
     "aiToolOptions": [
       {
         "value": "none",
@@ -309,7 +332,7 @@
     "open": false,
     "endpoint": null,
     "title": "원데이클래스 사전 질문지",
-    "intro": "어떤 일을 하고 있고 무엇을 배워보고 싶은지 알려주세요. 다섯 가지 질문을 바탕으로 수업을 준비합니다.",
+    "intro": "먼저 참여할 회차를 선택하고, 어떤 일을 하며 무엇을 배워보고 싶은지 알려주세요.",
     "learningGoalOptions": [
       {
         "value": "understand",

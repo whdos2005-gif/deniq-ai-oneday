@@ -5,7 +5,7 @@ const EXPERIENCE_VALUES = new Set(["never", "tried", "regular"]);
 const GOAL_VALUES = new Set(["understand", "use", "create", "solve", "unsure", "other"]);
 const SUBMISSION_ID_KEY = "deniq.oneday.submissionId";
 
-export const SURVEY_SCHEMA_VERSION = "deniq-oneday-survey/v2";
+export const SURVEY_SCHEMA_VERSION = "deniq-oneday-survey/v3";
 export const AI_TOOL_VALUES = Object.freeze(["none", "chatgpt", "claude", "gemini", "other"]);
 export const AI_TASK_VALUES = Object.freeze(["conversation-writing", "image-video", "web-coding", "agent-automation"]);
 
@@ -25,7 +25,9 @@ const DEFAULT_AI_TASK_OPTIONS = Object.freeze([
   { value: "agent-automation", label: "에이전트·자동화" },
 ]);
 
-export const SURVEY_FIELDS = ["name", "age", "occupation", "aiExperience", "learningGoals"];
+export const SESSION_IDS = Object.freeze(["2026-10-11", "2026-10-18"]);
+export const SURVEY_FIELDS = ["sessionId", "name", "age", "occupation", "aiExperience", "learningGoals"];
+const TOTAL_STEPS = SURVEY_FIELDS.length;
 
 function isV2Response(values) {
   return values?.surveyVersion === SURVEY_SCHEMA_VERSION
@@ -57,6 +59,7 @@ export function normalizedSurveyResponse(values) {
   const aiTools = normalizedSelection(values.aiTools, AI_TOOL_VALUES);
   return {
     surveyVersion: SURVEY_SCHEMA_VERSION,
+    sessionId: String(values.sessionId ?? ""),
     name: common.name,
     age: common.age,
     occupation: common.occupation,
@@ -72,6 +75,7 @@ export function normalizedSurveyResponse(values) {
 export function validateSurvey(values) {
   const normalized = normalizedSurveyResponse(values);
   const fieldErrors = {};
+  if (values.surveyVersion === SURVEY_SCHEMA_VERSION && !SESSION_IDS.includes(normalized.sessionId)) fieldErrors.sessionId = "참여할 수업 회차를 선택해 주세요.";
   if (normalized.name.length < 1 || normalized.name.length > 50) {
     fieldErrors.name = "이름은 1~50자로 입력해 주세요.";
   }
@@ -179,6 +183,7 @@ class SurveyApp {
     this.step = -1;
     this.values = {
       surveyVersion: SURVEY_SCHEMA_VERSION,
+      sessionId: "",
       name: "",
       age: "",
       occupation: "",
@@ -215,16 +220,16 @@ class SurveyApp {
     this.actions.hidden = true;
     this.root.innerHTML = `
       <section class="intro-screen" aria-labelledby="intro-title">
-        <span class="intro-index" aria-hidden="true">05</span>
+        <span class="intro-index" aria-hidden="true">06</span>
         <p class="eyebrow">${canSubmitLive(this.course) ? "PRE-CLASS QUESTIONS" : "REVIEW PREVIEW"}</p>
         <h1 class="intro-title" id="intro-title">${escapeHTML(this.course.survey.title)}</h1>
         <p class="intro-manifesto"><strong>질문이 제작이 되는 경험.</strong><br>${escapeHTML(this.course.survey.intro)}</p>
         <div class="intro-facts" aria-label="질문지 안내">
-          <span><b>05</b>QUESTIONS</span><span><b>03</b>MINUTES</span><span><b>01</b>PREVIEW</span>
+          <span><b>06</b>QUESTIONS</span><span><b>03</b>MINUTES</span><span><b>02</b>CLASSES</span>
         </div>
         <p class="intro-copy">SNS 계정·휴대전화·이메일은 묻지 않습니다. 입력한 내용은 이 브라우저에 저장하지 않습니다.</p>
         <p class="privacy-copy">사전 질문지는 수업 준비를 위한 자료이며, 제출만으로 참가나 결제가 확정되지 않습니다.</p>
-        <button class="intro-start" type="button" data-start><span>다섯 가지 질문 시작하기</span><b aria-hidden="true">→</b></button>
+        <button class="intro-start" type="button" data-start><span>참여 회차 선택하기</span><b aria-hidden="true">→</b></button>
         <p class="intro-foot">BEGIN · ASK · JUDGE · REVISE · APPLY</p>
       </section>`;
     this.root.querySelector("[data-start]").addEventListener("click", () => {
@@ -236,13 +241,14 @@ class SurveyApp {
 
   renderQuestion() {
     const renderers = [
+      () => this.renderSessionQuestion(),
       () => this.renderTextQuestion("name", "이름을 알려주세요.", "질문지 확인에 사용할 이름", "이름", 50),
       () => this.renderAgeQuestion(),
       () => this.renderTextQuestion("occupation", "지금 어떤 일을 하고 있나요?", "현재 역할을 가장 잘 나타내는 말로 적어주세요.", "예: 브랜드 디자이너, 마케팅 담당자, 외식업 경영자", 80),
       () => this.renderExperienceQuestion(),
       () => this.renderGoalsQuestion(),
     ];
-    this.setAIStep(this.step === 3);
+    this.setAIStep(this.step === 4);
     this.setPreviewBadge(false);
     this.setProgress(true);
     this.root.innerHTML = renderers[this.step]();
@@ -256,7 +262,7 @@ class SurveyApp {
       <section class="question-screen${compact ? " question-screen--ai" : ""}" aria-labelledby="question-title">
         <span class="question-index" aria-hidden="true">${String(this.step + 1).padStart(2, "0")}</span>
         <p class="eyebrow">QUESTION ${String(this.step + 1).padStart(2, "0")}</p>
-        <p class="section-label">5개 중 ${this.step + 1}번째 · 필수</p>
+        <p class="section-label">${TOTAL_STEPS}개 중 ${this.step + 1}번째 · 필수</p>
         <h1 class="question-title" id="question-title">${escapeHTML(title)}</h1>
         <p class="question-help">${escapeHTML(help)}</p>
         <div class="answer-area">${body}</div>
@@ -270,6 +276,17 @@ class SurveyApp {
       <input id="${field}" name="${field}" type="text" value="${value}" maxlength="${maxlength}" autocomplete="${field === "name" ? "name" : "organization-title"}" placeholder="${escapeHTML(placeholder)}">
       <div class="field-meta"><span data-count>${String(this.values[field]).length} / ${maxlength}</span></div>
       <p class="field-error" id="${field}-error" data-error hidden></p>`);
+  }
+
+
+  renderSessionQuestion() {
+    const sessions = this.course.operations.sessions;
+    const choices = sessions.map((session,index)=>this.optionHTML({
+      type:"radio",name:"sessionId",value:session.id,
+      label:session.label+" · 오후 3~7시",checked:this.values.sessionId===session.id,index
+    })).join("");
+    return this.questionShell("언제 참여하시나요?","참여할 회차 한 개를 선택해주세요.",
+      '<fieldset class="option-list session-options"><legend class="sr-only">참여 회차</legend>'+choices+'</fieldset><p class="field-error" id="sessionId-error" data-error hidden></p>');
   }
 
   renderAgeQuestion() {
@@ -356,6 +373,7 @@ class SurveyApp {
   }
 
   bindQuestionInput() {
+    this.root.querySelectorAll('input[name="sessionId"]').forEach(input=>input.addEventListener("change",event=>{ this.updateValue("sessionId",event.target.value);this.updateOptionStyles();this.clearVisibleError(); }));
     const textInput = this.root.querySelector('input[type="text"], input[type="number"]');
     if (textInput) {
       textInput.addEventListener("input", (event) => {
@@ -426,11 +444,7 @@ class SurveyApp {
 
   updateValue(field, value) {
     this.values[field] = value;
-    if (this.lastAttemptFingerprint && responseFingerprint(this.values) !== this.lastAttemptFingerprint) {
-      this.submissionId = null;
-      this.lastAttemptFingerprint = null;
-      safeSessionRemove();
-    }
+    // Keep the same ID after a lost response. Changed content must return CONFLICT, never create a silent duplicate.
   }
 
   updateOptionStyles() {
@@ -473,7 +487,7 @@ class SurveyApp {
   renderQuestionActions() {
     this.actions.hidden = false;
     this.actions.className = "actions";
-    this.actions.innerHTML = `<button type="button" data-back>이전</button><button class="primary" type="button" data-next>${this.step === 4 ? "내용 확인" : "다음"}</button>`;
+    this.actions.innerHTML = `<button type="button" data-back>이전</button><button class="primary" type="button" data-next>${this.step === TOTAL_STEPS - 1 ? "내용 확인" : "다음"}</button>`;
     this.actions.querySelector("[data-back]").addEventListener("click", () => {
       if (this.step === 0) return this.renderIntro();
       this.step -= 1;
@@ -494,11 +508,11 @@ class SurveyApp {
         : stepField === "learningGoals" ? "learningGoals" : stepField;
       return this.showVisibleError(message, focusField);
     }
-    if (this.step < 4) {
+    if (this.step < TOTAL_STEPS - 1) {
       this.step += 1;
       this.renderQuestion();
     } else {
-      this.step = 5;
+      this.step = TOTAL_STEPS;
       this.renderReview();
     }
   }
@@ -512,11 +526,12 @@ class SurveyApp {
     const goals = this.values.learningGoals.map((value) => this.labelFor("learningGoals", value));
     if (this.values.learningGoals.includes("other")) goals.push(this.values.learningGoalOther);
     const items = [
-      ["이름", this.values.name, 0],
-      ["나이", `${this.values.age}세`, 1],
-      ["현재 하는 일", this.values.occupation, 2],
-      ["AI 사용 경험", experience, 3],
-      ["배우고 싶은 내용", goals.join(" · "), 4],
+      ["참여 회차", this.course.operations.sessions.find(s=>s.id===this.values.sessionId)?.label+" · 오후 3~7시", 0],
+      ["이름", this.values.name, 1],
+      ["나이", `${this.values.age}세`, 2],
+      ["현재 하는 일", this.values.occupation, 3],
+      ["AI 사용 경험", experience, 4],
+      ["배우고 싶은 내용", goals.join(" · "), 5],
     ];
     const privacy = this.course.privacy;
     const liveReady = canSubmitLive(this.course);
@@ -533,7 +548,7 @@ class SurveyApp {
           </article>`).join("")}</div>
         <div class="consent-box">
           <label class="consent-label"><input type="checkbox" name="consent" ${this.values.consent ? "checked" : ""}><span>개인정보 수집·이용 안내를 확인했으며 수업 준비를 위한 이용에 동의합니다.</span></label>
-          <p class="privacy-note">목적: ${escapeHTML(privacy.purpose)}<br>${liveReady ? `관리자: ${escapeHTML(privacy.controller)} · 보관 기간: ${escapeHTML(privacy.retention)} · 문의: ${escapeHTML(privacy.contact)}` : "개인정보 처리 안내가 아직 확정되지 않아 실제 접수할 수 없습니다."}</p>
+          <p class="privacy-note">수집 항목: ${escapeHTML(privacy.items)}<br>목적: ${escapeHTML(privacy.purpose)}<br>${liveReady ? `관리자: ${escapeHTML(privacy.controller)} · 보관 기간: ${escapeHTML(privacy.retention)} · 문의: ${escapeHTML(privacy.contact)}<br>${escapeHTML(privacy.refusal)}` : "개인정보 처리 안내가 아직 확정되지 않아 실제 접수할 수 없습니다."}</p>
           <p class="field-error" id="consent-error" data-error hidden></p>
         </div>
       </section>`;
@@ -549,7 +564,7 @@ class SurveyApp {
     this.actions.className = "actions";
     this.actions.innerHTML = `<button type="button" data-back>이전</button><button class="primary" type="submit">${liveReady ? "질문지 제출하기" : "저장 없이 검토 결과 보기"}</button>`;
     this.actions.querySelector("[data-back]").addEventListener("click", () => {
-      this.step = 4;
+      this.step = TOTAL_STEPS - 1;
       this.renderQuestion();
     });
     this.focusScreen();
@@ -563,8 +578,8 @@ class SurveyApp {
   }
 
   async submit() {
-    if (this.step >= 0 && this.step <= 4) return this.next();
-    if (this.step !== 5) return;
+    if (this.step >= 0 && this.step < TOTAL_STEPS) return this.next();
+    if (this.step !== TOTAL_STEPS) return;
     const errors = validateSurvey(this.values);
     if (Object.keys(errors).length) {
       if (errors.consent && Object.keys(errors).length === 1) return this.showVisibleError(errors.consent, "consent");
@@ -587,7 +602,7 @@ class SurveyApp {
       safeSessionSet(this.submissionId);
     }
     this.lastAttemptFingerprint = fingerprint;
-    const payload = { ...normalizedSurveyResponse(this.values), submissionId: this.submissionId };
+    const payload = { ...normalizedSurveyResponse(this.values), submissionId: this.submissionId, website: document.querySelector('#website')?.value || "" };
     this.renderSubmitting();
 
     try {
@@ -595,20 +610,19 @@ class SurveyApp {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(payload),
+        signal: AbortSignal.timeout(20000),
       });
       const data = await response.json().catch(() => null);
       if (!response.ok || !data?.ok) {
-        if (data?.code === "CONFLICT") {
-          this.submissionId = null;
-          safeSessionRemove();
-        }
         if (data?.fieldErrors) Object.assign(errors, data.fieldErrors);
         throw new Error(data?.message || "질문지를 전송하지 못했습니다.");
       }
       if (!["ACCEPTED", "ALREADY_ACCEPTED"].includes(data.code)) throw new Error("알 수 없는 응답을 받았습니다.");
+      if (data.submissionId !== this.submissionId || data.sessionId !== this.values.sessionId) throw new Error("접수 회차와 확인 번호가 일치하지 않습니다. 같은 내용으로 다시 시도해주세요.");
+      safeSessionRemove();
       this.renderResult({ type: "success", code: data.code, submissionId: data.submissionId });
     } catch (error) {
-      this.renderResult({ type: "error", message: error.message || "잠시 후 다시 시도해 주세요." });
+      this.renderResult({ type: "error", message: error.name === "TimeoutError" ? "응답 확인이 늦어지고 있습니다. 내용을 바꾸지 말고 다시 시도해주세요. 같은 접수는 중복 저장하지 않습니다." : error.message || "잠시 후 다시 시도해 주세요." });
     }
   }
 
@@ -624,7 +638,7 @@ class SurveyApp {
 
   renderResult(result) {
     this.result = result;
-    this.step = 6;
+    this.step = TOTAL_STEPS + 1;
     this.setAIStep(false);
     this.setPreviewBadge(false);
     this.setProgress(false);
@@ -639,7 +653,7 @@ class SurveyApp {
         eyebrow: result.code === "ALREADY_ACCEPTED" ? "ALREADY RECEIVED" : "RECEIVED",
         symbol: "✓",
         title: result.code === "ALREADY_ACCEPTED" ? "이미 접수된<br>질문지입니다." : "질문지를<br>접수했습니다.",
-        note: "사전 질문지는 수업 준비를 위한 자료입니다. 제출만으로 참가나 결제가 확정되지는 않습니다.",
+        note: escapeHTML((this.course.operations.sessions.find(s=>s.id===this.values.sessionId)?.label||"")+" 회차의 사전 질문지를 접수했습니다. 입금 확인과 참가 확정은 주최 측에서 별도로 안내합니다."),
       },
       error: {
         eyebrow: "TRY AGAIN",
@@ -659,8 +673,8 @@ class SurveyApp {
     if (result.type === "error") {
       this.actions.className = "actions";
       this.actions.innerHTML = `<button type="button" data-edit>내용 수정</button><button class="primary" type="button" data-retry>다시 시도</button>`;
-      this.actions.querySelector("[data-edit]").addEventListener("click", () => { this.step = 5; this.renderReview(); });
-      this.actions.querySelector("[data-retry]").addEventListener("click", () => { this.step = 5; this.submit(); });
+      this.actions.querySelector("[data-edit]").addEventListener("click", () => { this.step = TOTAL_STEPS; this.renderReview(); });
+      this.actions.querySelector("[data-retry]").addEventListener("click", () => { this.step = TOTAL_STEPS; this.submit(); });
     } else {
       this.actions.className = "actions one";
       this.actions.innerHTML = `<button class="primary" type="button" data-home>수업 소개로 돌아가기</button>`;
@@ -689,9 +703,9 @@ class SurveyApp {
     const position = this.step + 1;
     const progress = region.querySelector(".progress");
     progress.setAttribute("aria-valuenow", position);
-    progress.setAttribute("aria-valuetext", `5개 중 ${position}번째 질문`);
-    document.querySelector("[data-progress-bar]").style.width = `${position * 20}%`;
-    document.querySelector("[data-progress-label]").textContent = `${String(position).padStart(2, "0")} / 05`;
+    progress.setAttribute("aria-valuetext", `${TOTAL_STEPS}개 중 ${position}번째 질문`);
+    document.querySelector("[data-progress-bar]").style.width = `${position / TOTAL_STEPS * 100}%`;
+    document.querySelector("[data-progress-label]").textContent = `${String(position).padStart(2, "0")} / 06`;
   }
 
   setAIStep(active) {

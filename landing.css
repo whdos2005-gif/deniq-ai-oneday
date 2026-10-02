@@ -690,3 +690,8 @@ details.journey-step { display: block; min-height: 0; scroll-margin-top: 96px; b
   .faq-list .faq-item summary { grid-template-columns: 24px minmax(0, 1fr); gap: 12px; }
   .faq-list .faq-item p { padding-left: 36px; }
 }
+:root { --intake-row-border: rgba(14, 31, 52, .16); }
+.bank-details { margin: 24px 0; }
+.bank-details > div { display:grid;grid-template-columns:82px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--intake-row-border); }
+.bank-details dt { font-size:14px;color:#5c6774; }
+.bank-details dd { margin:0;font-size:16px;line-height:1.5;overflow-wrap:anywhere; }
