@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#ffffff">
   <meta name="description" content="AI가 처음이어도 내 웹페이지를 직접 만들고 수정해 공유하는 DENIQ AI 원데이클래스">
   <title>DENIQ AI 원데이클래스</title>
-  <link rel="stylesheet" href="./landing.css?v=20261003-registration">
-  <script type="module" src="./landing.js?v=20261003-registration"></script>
+  <link rel="stylesheet" href="./landing.css?v=20261003-registration-focus">
+  <script type="module" src="./landing.js?v=20261003-registration-focus"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">본문으로 바로가기</a>
@@ -20,7 +20,7 @@
     <nav class="site-nav" aria-label="페이지 메뉴">
       <a href="#method">수업 방식</a>
       <a href="#curriculum">상세 과정</a>
-      <a href="#payment">준비·신청</a>
+      <a href="#bank">신청·입금</a>
     </nav>
     <a class="header-cta" href="./survey.html" data-course-cta>사전 질문지 작성하기</a>
   </header>
@@ -41,7 +41,7 @@
           <a class="button button-primary" href="./survey.html" data-course-cta>사전 질문지 작성하기</a>
           <a class="button button-quiet" href="#payment">준비물·신청 안내 보기</a>
         </div>
-        <p class="hero-registration">사전 질문지 작성 → 수강료 입금 → 입금 확인 후 안내 문자</p>
+        <a class="hero-registration" href="#bank">신청 전 필수 확인 · 질문지 작성 후 입금까지 완료해주세요 <span aria-hidden="true">↓</span></a>
         <dl class="hero-facts" aria-label="수업 운영 정보">
           <div><dt>일시</dt><dd data-operation="schedule">10월 11일 · 10월 18일 · 15:00–19:00</dd></div>
           <div><dt>장소</dt><dd data-operation="venue">압구정로데오역<br>도보 5분</dd></div>
@@ -53,6 +53,18 @@
       <figure class="hero-media">
         <img src="./assets/photo-meeting-v1.jpg" alt="햇빛이 드는 공간에서 테이블에 둘러앉아 대화하는 사람들" width="1200" height="1600" fetchpriority="high" data-hero-image>
       </figure>
+    </section>
+
+    <section class="registration-panel section-shell" id="bank" aria-labelledby="registration-title">
+      <p class="registration-label">신청 전 필수 확인 · 수강 신청 안내</p>
+      <h2 id="registration-title">질문지 작성 후,<br>수강료 입금까지 완료해주세요</h2>
+      <p class="depositor-guide">입금 전에 사전 질문지를 반드시 작성해주세요. 질문지 제출만으로 참가가 확정되지는 않습니다.</p>
+      <ol class="registration-steps">
+        <li><strong>사전 질문지 작성</strong><span>참여 회차를 선택하고<br>실명과 휴대폰 번호를 입력해주세요.</span></li>
+        <li><strong>수강료 입금</strong><b class="registration-price" data-payment-amount>350,000원</b><span>제출 완료 화면에 안내된 계좌로 입금해주세요. 입금자명은 작성한 실명과 같게 해주세요.</span></li>
+        <li><strong>입금 확인 후 안내 문자</strong><span>운영진이 입금을 확인한 뒤<br>참가 확정과 상세 장소를 문자로 안내합니다.</span></li>
+      </ol>
+      <div class="registration-bottom"><a class="button registration-cta" href="./survey.html" data-course-cta>사전 질문지 작성하기</a><p>계좌번호는 질문지 제출 완료 화면에서 안내합니다.</p></div>
     </section>
 
     <section class="promise section-shell" id="promise" aria-labelledby="promise-title">
@@ -176,18 +188,8 @@
             <h3>준비물</h3>
             <ul data-preparation><li>실습에 사용할 개인 노트북과 충전기</li></ul>
           </article>
-          <article class="payment-panel" id="bank">
-            <h3>수강 신청 안내</h3>
-            <p class="depositor-guide">입금 전에 사전 질문지를 반드시 작성해주세요.</p>
-            <ol class="registration-steps">
-              <li><strong>사전 질문지 작성</strong><span>참여 회차를 선택하고 실명과 휴대폰 번호를 입력해주세요.</span></li>
-              <li><strong>수강료 입금</strong><span>질문지 제출 완료 화면에 안내된 계좌로 <b data-payment-amount>350,000원</b>을 입금해주세요. 입금자명은 작성한 실명과 같게 해주세요.</span></li>
-              <li><strong>안내 문자 확인</strong><span>운영진이 입금을 확인한 뒤 참가 확정과 상세 장소를 문자로 안내합니다.</span></li>
-            </ol>
-            <a class="button button-primary" href="./survey.html" data-course-cta>사전 질문지 작성하기</a>
-            <p class="payment-scope">설문을 먼저 작성해야 입금 내역과 신청자를 확인할 수 있습니다.</p>
-          </article>
         </div>
+        <a class="registration-return" href="#bank">신청·입금 절차 다시 보기 ↑</a>
         <div class="refund-row">
           <h3>취소·환불</h3>
           <p data-refund-policy>환불 기준 안내 예정</p>
