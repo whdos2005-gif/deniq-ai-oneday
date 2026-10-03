@@ -717,7 +717,12 @@ details.journey-step { display: block; min-height: 0; scroll-margin-top: 96px; b
 .registration-cta { background: white; color: #263e87; border: 1px solid white; }
 .registration-panel :focus-visible { outline-color: #fff3ab; }
 .logistics-grid > .preparation-panel:only-child { grid-column: 1/-1; padding-right: 0; border-right: 0; }
-.registration-return { display: inline-flex; margin-top: 22px; min-height: 44px; align-items: center; color: var(--blue); font-size: 15px; font-weight: 700; text-underline-offset: 4px; }
+.registration-summary { margin-top: 32px; padding: 32px; background: #fff; border: 1px solid #b8c4e1; }
+.registration-summary > p { color: var(--ink); font-size: 16px; line-height: 1.75; }
+.registration-summary .registration-steps { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 28px; margin: 26px 0; }
+.registration-summary .registration-steps li { padding: 46px 0 12px; }
+.registration-summary .registration-steps li::before { top: 15px; }
+.registration-summary .registration-steps strong { line-height: 1.6; }
 @media(max-width:760px) {
   .registration-panel { margin-top: 20px; padding: 26px 20px; }
   .registration-panel .registration-steps { grid-template-columns: 1fr; gap: 12px; margin-block: 26px; }
@@ -726,4 +731,9 @@ details.journey-step { display: block; min-height: 0; scroll-margin-top: 96px; b
   .registration-panel .registration-steps strong { font-size: 18px; margin-bottom: 9px; }
   .registration-bottom { gap: 16px; }
   .registration-cta { width: 100%; justify-content: center; }
+  .registration-summary { padding: 24px 20px; }
+  .registration-summary .registration-steps { grid-template-columns: 1fr; gap: 4px; }
+  .registration-summary .registration-steps li { padding: 18px 0 20px 36px; }
+  .registration-summary .registration-steps li::before { top: 22px; }
+  .registration-summary .button { width: 100%; justify-content: center; }
 }

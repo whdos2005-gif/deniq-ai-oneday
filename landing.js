@@ -125,7 +125,7 @@ function renderOperations(operations = {}) {
   text('[data-operation="price"]', formatPrice(operations.priceKRW));
   text('[data-operation="capacity"]', operations.capacity || operations.capacityHint || "인원 안내 예정");
 
-  text('[data-payment-amount]', formatPrice(operations.priceKRW));
+  document.querySelectorAll('[data-payment-amount]').forEach(node => { node.textContent = formatPrice(operations.priceKRW); });
 
   text("[data-refund-policy]", operations.refundPolicy || "환불 기준 안내 예정");
   text("[data-refund-after]", operations.refundAfterDeadline || "");
