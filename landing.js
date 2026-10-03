@@ -125,15 +125,7 @@ function renderOperations(operations = {}) {
   text('[data-operation="price"]', formatPrice(operations.priceKRW));
   text('[data-operation="capacity"]', operations.capacity || operations.capacityHint || "인원 안내 예정");
 
-  const bank = operations.bankTransfer;
-  const bankDetails = document.querySelector('[data-bank-details]');
-  if (bank && bankDetails) {
-    bankDetails.innerHTML = [['수강료',formatPrice(operations.priceKRW)],['은행',bank.bank],['계좌번호',bank.account],['예금주',bank.holder],['수업 시간','오후 3~7시 · 4시간'],['장소 안내',operations.venueHint]].map(([label,value])=>`<div><dt>${escapeHTML(label)}</dt><dd>${escapeHTML(value)}</dd></div>`).join('');
-    document.querySelector('[data-copy-account]')?.addEventListener('click',async()=>{
-      try { await navigator.clipboard.writeText(bank.account); text('[data-bank-status]','계좌번호를 복사했습니다. 입금 확인과 참가 확정은 주최 측에서 안내합니다.'); }
-      catch { text('[data-bank-status]','계좌번호를 직접 선택해 복사해주세요.'); }
-    });
-  }
+  text('[data-payment-amount]', formatPrice(operations.priceKRW));
 
   text("[data-refund-policy]", operations.refundPolicy || "환불 기준 안내 예정");
   text("[data-refund-after]", operations.refundAfterDeadline || "");
@@ -173,12 +165,12 @@ export function renderLanding(course) {
   renderPreparation(course.preparation);
   renderOperations(course.operations);
   if (!canSubmitLive(course)) {
-    text('.depositor-guide','아래는 확정된 수강료와 입금 계좌 안내입니다. 사전 질문지의 실제 접수 연결을 준비하고 있습니다.');
+    text('.depositor-guide','사전 질문지의 실제 접수 연결을 준비하고 있습니다. 접수가 열리면 질문지 작성 후 입금해주세요.');
     document.querySelectorAll('[data-course-cta]').forEach(node=>{(node.querySelector('span')||node).textContent='사전 질문지 미리보기';});
   }
   renderFaq(course.faq ?? []);
   text("[data-application-status]", canSubmitLive(course)
-    ? "사전 질문지 제출은 참가 확정이 아닙니다. 최종 안내를 확인해주세요."
+    ? "질문지 제출 후 입금해주세요. 입금 확인 후 안내 문자를 보내드립니다."
     : "현재 사전 질문지는 검토용이며 실제 접수되지 않습니다.");
 }
 

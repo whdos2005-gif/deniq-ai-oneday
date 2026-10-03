@@ -398,6 +398,12 @@ body { font-size: var(--body-size); }
 .hero-facts dt { font-size: var(--meta-size); line-height: 1.5; }
 .hero-facts dd { font-size: 17px; line-height: 1.55; margin-top: 8px; overflow-wrap: normal; }
 .hero-facts [data-operation="venue"] { white-space: pre-line; }
+.hero-registration { margin: 14px 0 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.registration-steps { list-style: none; counter-reset: registration; padding: 0; margin: 26px 0; }
+.registration-steps li { position: relative; counter-increment: registration; padding: 18px 0 18px 40px; border-top: 1px solid var(--line); }
+.registration-steps li::before { content: counter(registration, decimal-leading-zero); position: absolute; left: 0; top: 19px; color: var(--blue); font-size: 14px; font-weight: 750; }
+.registration-steps strong { display: block; margin-bottom: 7px; font-size: 18px; }
+.registration-steps span { display: block; font-size: 15px; line-height: 1.75; color: var(--muted); }
 .hero-media { height: clamp(680px, calc(100svh - 80px), 860px); aspect-ratio: auto; }
 .hero-media img { object-position: center 53%; }
 

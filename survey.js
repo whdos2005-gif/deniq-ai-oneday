@@ -1,11 +1,12 @@
 import { canSubmitLive } from "./readiness.js";
+import { normalizePhone, formatPhone } from "./phone.js";
 export { canSubmitLive } from "./readiness.js";
 
 const EXPERIENCE_VALUES = new Set(["never", "tried", "regular"]);
 const GOAL_VALUES = new Set(["understand", "use", "create", "solve", "unsure", "other"]);
-const SUBMISSION_ID_KEY = "deniq.oneday.submissionId";
+const SUBMISSION_ID_KEY = "deniq.oneday.submissionId.v4";
 
-export const SURVEY_SCHEMA_VERSION = "deniq-oneday-survey/v3";
+export const SURVEY_SCHEMA_VERSION = "deniq-oneday-survey/v4";
 export const AI_TOOL_VALUES = Object.freeze(["none", "chatgpt", "claude", "gemini", "other"]);
 export const AI_TASK_VALUES = Object.freeze(["conversation-writing", "image-video", "web-coding", "agent-automation"]);
 
@@ -61,6 +62,7 @@ export function normalizedSurveyResponse(values) {
     surveyVersion: SURVEY_SCHEMA_VERSION,
     sessionId: String(values.sessionId ?? ""),
     name: common.name,
+    phone: normalizePhone(values.phone),
     age: common.age,
     occupation: common.occupation,
     aiTools,
@@ -78,6 +80,9 @@ export function validateSurvey(values) {
   if (values.surveyVersion === SURVEY_SCHEMA_VERSION && !SESSION_IDS.includes(normalized.sessionId)) fieldErrors.sessionId = "참여할 수업 회차를 선택해 주세요.";
   if (normalized.name.length < 1 || normalized.name.length > 50) {
     fieldErrors.name = "이름은 1~50자로 입력해 주세요.";
+  }
+  if (values.surveyVersion === SURVEY_SCHEMA_VERSION && !normalized.phone) {
+    fieldErrors.phone = "안내 문자를 받을 휴대폰 번호를 확인해 주세요.";
   }
   if (!Number.isInteger(normalized.age) || normalized.age < 1 || normalized.age > 120) {
     fieldErrors.age = "나이는 1~120 사이의 숫자로 입력해 주세요.";
@@ -185,6 +190,7 @@ class SurveyApp {
       surveyVersion: SURVEY_SCHEMA_VERSION,
       sessionId: "",
       name: "",
+      phone: "",
       age: "",
       occupation: "",
       aiTools: [],
@@ -227,8 +233,8 @@ class SurveyApp {
         <div class="intro-facts" aria-label="질문지 안내">
           <span><b>06</b>QUESTIONS</span><span><b>03</b>MINUTES</span><span><b>02</b>CLASSES</span>
         </div>
-        <p class="intro-copy">SNS 계정·휴대전화·이메일은 묻지 않습니다. 입력한 내용은 이 브라우저에 저장하지 않습니다.</p>
-        <p class="privacy-copy">사전 질문지는 수업 준비를 위한 자료이며, 제출만으로 참가나 결제가 확정되지 않습니다.</p>
+        <p class="intro-copy">입금 전에 사전 질문지를 반드시 작성해주세요. 실명과 안내 문자를 받을 휴대폰 번호가 필요합니다.</p>
+        <p class="privacy-copy">질문지 제출 → 완료 화면의 계좌로 입금 → 입금 확인 후 안내 문자</p>
         <button class="intro-start" type="button" data-start><span>참여 회차 선택하기</span><b aria-hidden="true">→</b></button>
         <p class="intro-foot">BEGIN · ASK · JUDGE · REVISE · APPLY</p>
       </section>`;
@@ -242,7 +248,7 @@ class SurveyApp {
   renderQuestion() {
     const renderers = [
       () => this.renderSessionQuestion(),
-      () => this.renderTextQuestion("name", "이름을 알려주세요.", "질문지 확인에 사용할 이름", "이름", 50),
+      () => this.renderContactQuestion(),
       () => this.renderAgeQuestion(),
       () => this.renderTextQuestion("occupation", "지금 어떤 일을 하고 있나요?", "현재 역할을 가장 잘 나타내는 말로 적어주세요.", "예: 브랜드 디자이너, 마케팅 담당자, 외식업 경영자", 80),
       () => this.renderExperienceQuestion(),
@@ -276,6 +282,16 @@ class SurveyApp {
       <input id="${field}" name="${field}" type="text" value="${value}" maxlength="${maxlength}" autocomplete="${field === "name" ? "name" : "organization-title"}" placeholder="${escapeHTML(placeholder)}">
       <div class="field-meta"><span data-count>${String(this.values[field]).length} / ${maxlength}</span></div>
       <p class="field-error" id="${field}-error" data-error hidden></p>`);
+  }
+
+  renderContactQuestion() {
+    return this.questionShell("신청자 정보를 알려주세요.", "입금 확인과 수업 안내 문자에 사용할 정보입니다.", `
+      <label class="field-label" for="name">실명</label>
+      <input id="name" name="name" type="text" value="${escapeHTML(this.values.name)}" maxlength="50" autocomplete="name" placeholder="입금자명과 같은 실명" required>
+      <label class="field-label" for="phone">휴대폰 번호</label>
+      <input id="phone" name="phone" type="tel" inputmode="tel" value="${escapeHTML(this.values.phone)}" maxlength="30" autocomplete="tel" placeholder="010-1234-5678" required>
+      <p class="contact-help">입금이 확인되면 이 번호로 안내 문자를 보내드립니다.</p>
+      <p class="field-error" id="contact-error" data-error hidden></p>`);
   }
 
 
@@ -374,15 +390,14 @@ class SurveyApp {
 
   bindQuestionInput() {
     this.root.querySelectorAll('input[name="sessionId"]').forEach(input=>input.addEventListener("change",event=>{ this.updateValue("sessionId",event.target.value);this.updateOptionStyles();this.clearVisibleError(); }));
-    const textInput = this.root.querySelector('input[type="text"], input[type="number"]');
-    if (textInput) {
+    this.root.querySelectorAll('input[name="name"], input[name="age"], input[name="occupation"], input[name="phone"]').forEach(textInput => {
       textInput.addEventListener("input", (event) => {
         this.updateValue(event.target.name, event.target.value);
         const counter = this.root.querySelector("[data-count]");
         if (counter) counter.textContent = `${event.target.value.length} / ${event.target.maxLength}`;
         this.clearVisibleError();
       });
-    }
+    });
 
     this.root.querySelectorAll('input[type="checkbox"][name="aiTools"]').forEach((input) => {
       input.addEventListener("change", (event) => {
@@ -501,11 +516,11 @@ class SurveyApp {
     const errors = validateSurvey({ ...this.values, consent: true });
     const message = stepField === "learningGoals"
       ? errors.learningGoals ?? errors.learningGoalOther
-      : errors[stepField];
+      : stepField === "name" ? errors.name ?? errors.phone : errors[stepField];
     if (message) {
       const focusField = stepField === "aiExperience"
         ? errors.aiToolOther ? "aiToolOther" : errors.aiTasks ? "aiTasks" : "aiTools"
-        : stepField === "learningGoals" ? "learningGoals" : stepField;
+        : stepField === "name" && !errors.name ? "phone" : stepField === "learningGoals" ? "learningGoals" : stepField;
       return this.showVisibleError(message, focusField);
     }
     if (this.step < TOTAL_STEPS - 1) {
@@ -527,7 +542,8 @@ class SurveyApp {
     if (this.values.learningGoals.includes("other")) goals.push(this.values.learningGoalOther);
     const items = [
       ["참여 회차", this.course.operations.sessions.find(s=>s.id===this.values.sessionId)?.label+" · 오후 3~7시", 0],
-      ["이름", this.values.name, 1],
+      ["실명", this.values.name, 1],
+      ["휴대폰 번호", formatPhone(this.values.phone), 1],
       ["나이", `${this.values.age}세`, 2],
       ["현재 하는 일", this.values.occupation, 3],
       ["AI 사용 경험", experience, 4],
@@ -540,15 +556,15 @@ class SurveyApp {
       <section class="review-screen" aria-labelledby="review-title">
         <p class="eyebrow">REVIEW</p>
         <h1 id="review-title">입력한 내용을<br>확인해 주세요.</h1>
-        <p class="review-intro">수정할 항목이 있으면 바로 돌아갈 수 있습니다.</p>
+        <p class="review-intro">실명과 휴대폰 번호를 확인해주세요. 제출 후 입금 계좌를 안내합니다.</p>
         <div class="review-list">${items.map(([label, value, step], index) => `
           <article class="review-item">
             <div class="review-heading"><span>${String(index + 1).padStart(2, "0")}</span><h2>${escapeHTML(label)}</h2></div>
             <p>${escapeHTML(value)}</p><button class="text-button" type="button" data-edit="${step}">수정</button>
           </article>`).join("")}</div>
         <div class="consent-box">
-          <label class="consent-label"><input type="checkbox" name="consent" ${this.values.consent ? "checked" : ""}><span>개인정보 수집·이용 안내를 확인했으며 수업 준비를 위한 이용에 동의합니다.</span></label>
-          <p class="privacy-note">수집 항목: ${escapeHTML(privacy.items)}<br>목적: ${escapeHTML(privacy.purpose)}<br>${liveReady ? `관리자: ${escapeHTML(privacy.controller)} · 보관 기간: ${escapeHTML(privacy.retention)} · 문의: ${escapeHTML(privacy.contact)}<br>${escapeHTML(privacy.refusal)}` : "개인정보 처리 안내가 아직 확정되지 않아 실제 접수할 수 없습니다."}</p>
+          <label class="consent-label"><input type="checkbox" name="consent" ${this.values.consent ? "checked" : ""}><span>개인정보 수집·이용 안내를 확인했으며 수업 준비·입금 확인·안내 문자 발송을 위한 이용에 동의합니다.</span></label>
+          <p class="privacy-note">수집 항목: ${escapeHTML(privacy.items)}<br>목적: ${escapeHTML(privacy.purpose)}<br>${escapeHTML(privacy.access || '')}<br>${liveReady ? `관리자: ${escapeHTML(privacy.controller)} · 보관 기간: ${escapeHTML(privacy.retention)} · 문의: ${escapeHTML(privacy.contact)}<br>${escapeHTML(privacy.refusal)}` : "개인정보 처리 안내가 아직 확정되지 않아 실제 접수할 수 없습니다."}</p>
           <p class="field-error" id="consent-error" data-error hidden></p>
         </div>
       </section>`;
@@ -583,13 +599,13 @@ class SurveyApp {
     const errors = validateSurvey(this.values);
     if (Object.keys(errors).length) {
       if (errors.consent && Object.keys(errors).length === 1) return this.showVisibleError(errors.consent, "consent");
-      const firstField = SURVEY_FIELDS.find((field) => errors[field] || (field === "learningGoals" && errors.learningGoalOther));
+      const firstField = SURVEY_FIELDS.find((field) => errors[field] || (field === "name" && errors.phone) || (field === "learningGoals" && errors.learningGoalOther));
       this.step = Math.max(0, SURVEY_FIELDS.indexOf(firstField));
       this.renderQuestion();
       const field = firstField === "aiExperience"
         ? errors.aiToolOther ? "aiToolOther" : errors.aiTasks ? "aiTasks" : "aiTools"
-        : firstField === "learningGoals" ? "learningGoals" : firstField;
-      return this.showVisibleError(errors[firstField] ?? errors.learningGoalOther, field);
+        : firstField === "name" && !errors.name ? "phone" : firstField === "learningGoals" ? "learningGoals" : firstField;
+      return this.showVisibleError(errors[firstField] ?? errors.phone ?? errors.learningGoalOther, field);
     }
 
     if (!canSubmitLive(this.course)) {
@@ -653,7 +669,7 @@ class SurveyApp {
         eyebrow: result.code === "ALREADY_ACCEPTED" ? "ALREADY RECEIVED" : "RECEIVED",
         symbol: "✓",
         title: result.code === "ALREADY_ACCEPTED" ? "이미 접수된<br>질문지입니다." : "질문지를<br>접수했습니다.",
-        note: escapeHTML((this.course.operations.sessions.find(s=>s.id===this.values.sessionId)?.label||"")+" 회차의 사전 질문지를 접수했습니다. 입금 확인과 참가 확정은 주최 측에서 별도로 안내합니다."),
+        note: escapeHTML((this.course.operations.sessions.find(s=>s.id===this.values.sessionId)?.label||"")+" 회차의 사전 질문지를 접수했습니다. 아래 계좌로 수강료를 입금해주세요."),
       },
       error: {
         eyebrow: "TRY AGAIN",
@@ -668,7 +684,13 @@ class SurveyApp {
         ${copy.symbol ? `<div class="status-symbol" aria-hidden="true">${copy.symbol}</div>` : ""}
         <h1 id="status-title">${copy.title}</h1>
         <p class="status-note">${copy.note}</p>
+        ${result.type === "success" ? this.paymentInstructionsHTML() : ""}
       </section>`;
+    if (result.type === "success") this.root.querySelector('[data-copy-account]')?.addEventListener('click', async () => {
+      const status = this.root.querySelector('[data-copy-status]');
+      try { await navigator.clipboard.writeText(this.course.operations.bankTransfer.account); status.textContent = '계좌번호를 복사했습니다.'; }
+      catch { status.textContent = '계좌번호를 길게 누르거나 선택해 복사해주세요.'; }
+    });
     this.actions.hidden = false;
     if (result.type === "error") {
       this.actions.className = "actions";
@@ -682,6 +704,21 @@ class SurveyApp {
     }
     this.announce(result.type === "preview" ? "미리보기를 마쳤습니다. 실제 접수되지 않았습니다." : result.type === "success" ? "질문지를 접수했습니다." : "전송을 완료하지 못했습니다. 다시 시도할 수 있습니다.");
     this.focusScreen();
+  }
+
+  paymentInstructionsHTML() {
+    const operations = this.course.operations, bank = operations.bankTransfer;
+    if (!bank?.bank || !bank.account || !bank.holder) return '<p class="status-note">입금 계좌는 운영진에게 문의해주세요.</p>';
+    const rows = [['수강료', Number(operations.priceKRW).toLocaleString('ko-KR')+'원'], ['은행', bank.bank], ['계좌번호', bank.account], ['예금주', bank.holder], ['입금자명', this.values.name]];
+    return `<section class="transfer-card" aria-labelledby="transfer-title">
+      <p class="eyebrow">NEXT · 입금 안내</p><h2 id="transfer-title">수강료를 입금해주세요</h2>
+      <dl>${rows.map(([label,value])=>`<div><dt>${escapeHTML(label)}</dt><dd>${escapeHTML(value)}</dd></div>`).join('')}</dl>
+      <button type="button" class="copy-account" data-copy-account>계좌번호 복사</button>
+      <p class="copy-status" data-copy-status role="status"></p>
+      <p>입금자명은 질문지에 적은 실명과 같게 해주세요.</p>
+      <p class="transfer-next">입금 확인 후 <strong>${escapeHTML(formatPhone(this.values.phone))}</strong> 번호로 참가 확정과 상세 장소를 안내하는 문자를 보내드립니다.</p>
+      <p class="transfer-note">운영진이 입금 내역을 확인한 뒤 순차적으로 안내합니다.</p>
+    </section>`;
   }
 
   renderConfigError() {
@@ -740,6 +777,7 @@ class SurveyApp {
 
   focusScreen() {
     this.root.focus({ preventScroll: true });
+    window.scrollTo({ top: 0, behavior: 'auto' });
   }
 
   announce(message) {

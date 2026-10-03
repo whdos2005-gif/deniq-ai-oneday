@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#ffffff">
   <meta name="description" content="AI가 처음이어도 내 웹페이지를 직접 만들고 수정해 공유하는 DENIQ AI 원데이클래스">
   <title>DENIQ AI 원데이클래스</title>
-  <link rel="stylesheet" href="./landing.css?v=20261002-intake">
-  <script type="module" src="./landing.js?v=20261002-intake"></script>
+  <link rel="stylesheet" href="./landing.css?v=20261003-registration">
+  <script type="module" src="./landing.js?v=20261003-registration"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">본문으로 바로가기</a>
@@ -41,6 +41,7 @@
           <a class="button button-primary" href="./survey.html" data-course-cta>사전 질문지 작성하기</a>
           <a class="button button-quiet" href="#payment">준비물·신청 안내 보기</a>
         </div>
+        <p class="hero-registration">사전 질문지 작성 → 수강료 입금 → 입금 확인 후 안내 문자</p>
         <dl class="hero-facts" aria-label="수업 운영 정보">
           <div><dt>일시</dt><dd data-operation="schedule">10월 11일 · 10월 18일 · 15:00–19:00</dd></div>
           <div><dt>장소</dt><dd data-operation="venue">압구정로데오역<br>도보 5분</dd></div>
@@ -177,10 +178,14 @@
           </article>
           <article class="payment-panel" id="bank">
             <h3>수강 신청 안내</h3>
-            <p class="depositor-guide">참여 회차를 선택해 사전 질문지를 작성하고, 아래 계좌로 수강료를 입금해주세요.</p>
-            <dl class="bank-details" data-bank-details></dl>
-            <button type="button" class="button button-quiet" data-copy-account>계좌번호 복사</button>
-            <p class="payment-scope" data-bank-status role="status">입금 확인과 참가 확정, 상세 장소는 주최 측에서 개별 안내합니다.</p>
+            <p class="depositor-guide">입금 전에 사전 질문지를 반드시 작성해주세요.</p>
+            <ol class="registration-steps">
+              <li><strong>사전 질문지 작성</strong><span>참여 회차를 선택하고 실명과 휴대폰 번호를 입력해주세요.</span></li>
+              <li><strong>수강료 입금</strong><span>질문지 제출 완료 화면에 안내된 계좌로 <b data-payment-amount>350,000원</b>을 입금해주세요. 입금자명은 작성한 실명과 같게 해주세요.</span></li>
+              <li><strong>안내 문자 확인</strong><span>운영진이 입금을 확인한 뒤 참가 확정과 상세 장소를 문자로 안내합니다.</span></li>
+            </ol>
+            <a class="button button-primary" href="./survey.html" data-course-cta>사전 질문지 작성하기</a>
+            <p class="payment-scope">설문을 먼저 작성해야 입금 내역과 신청자를 확인할 수 있습니다.</p>
           </article>
         </div>
         <div class="refund-row">
@@ -200,7 +205,7 @@
       <div class="section-shell apply-inner">
         <p class="section-label">사전 질문</p>
         <h2 id="apply-title">무엇을 만들고 싶은지<br>먼저 들려주세요</h2>
-        <p>참여 회차와 다섯 가지 질문을 바탕으로 관심사에 맞는 수업을 준비합니다.</p>
+        <p>입금 전 필수 작성입니다. 실명·연락처와 관심사를 알려주시면 수업 준비와 참가 안내에 활용합니다.</p>
         <a class="apply-link" href="./survey.html" data-course-cta><span>사전 질문지 작성하기</span><b aria-hidden="true">↗</b></a>
         <p class="application-status" data-application-status>현재 사전 질문지는 검토용이며 실제 접수되지 않습니다.</p>
       </div>
