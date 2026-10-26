@@ -26,7 +26,7 @@ const DEFAULT_AI_TASK_OPTIONS = Object.freeze([
   { value: "agent-automation", label: "에이전트·자동화" },
 ]);
 
-export const SESSION_IDS = Object.freeze(["2026-10-11", "2026-10-18"]);
+export const SESSION_IDS = Object.freeze(["2026-11-08"]);
 export const SURVEY_FIELDS = ["sessionId", "name", "age", "occupation", "aiExperience", "learningGoals"];
 const TOTAL_STEPS = SURVEY_FIELDS.length;
 
@@ -74,10 +74,10 @@ export function normalizedSurveyResponse(values) {
   };
 }
 
-export function validateSurvey(values) {
+export function validateSurvey(values, sessionIds = SESSION_IDS) {
   const normalized = normalizedSurveyResponse(values);
   const fieldErrors = {};
-  if (values.surveyVersion === SURVEY_SCHEMA_VERSION && !SESSION_IDS.includes(normalized.sessionId)) fieldErrors.sessionId = "참여할 수업 회차를 선택해 주세요.";
+  if (values.surveyVersion === SURVEY_SCHEMA_VERSION && !sessionIds.includes(normalized.sessionId)) fieldErrors.sessionId = "참여할 수업 회차를 선택해 주세요.";
   if (normalized.name.length < 1 || normalized.name.length > 50) {
     fieldErrors.name = "이름은 1~50자로 입력해 주세요.";
   }
@@ -231,7 +231,7 @@ class SurveyApp {
         <h1 class="intro-title" id="intro-title">${escapeHTML(this.course.survey.title)}</h1>
         <p class="intro-manifesto"><strong>질문이 제작이 되는 경험.</strong><br>${escapeHTML(this.course.survey.intro)}</p>
         <div class="intro-facts" aria-label="질문지 안내">
-          <span><b>06</b>QUESTIONS</span><span><b>03</b>MINUTES</span><span><b>02</b>CLASSES</span>
+          <span><b>06</b>QUESTIONS</span><span><b>03</b>MINUTES</span><span><b>${String(this.course.operations.sessions.length).padStart(2,"0")}</b>CLASS</span>
         </div>
         <p class="intro-copy">입금 전에 사전 질문지를 반드시 작성해주세요. 실명과 안내 문자를 받을 휴대폰 번호가 필요합니다.</p>
         <p class="privacy-copy">질문지 제출 → 완료 화면의 계좌로 입금 → 입금 확인 후 안내 문자</p>
@@ -513,7 +513,7 @@ class SurveyApp {
 
   next() {
     const stepField = SURVEY_FIELDS[this.step];
-    const errors = validateSurvey({ ...this.values, consent: true });
+    const errors = validateSurvey({ ...this.values, consent: true }, this.course.operations.sessions.map(s=>s.id));
     const message = stepField === "learningGoals"
       ? errors.learningGoals ?? errors.learningGoalOther
       : stepField === "name" ? errors.name ?? errors.phone : errors[stepField];
@@ -596,7 +596,7 @@ class SurveyApp {
   async submit() {
     if (this.step >= 0 && this.step < TOTAL_STEPS) return this.next();
     if (this.step !== TOTAL_STEPS) return;
-    const errors = validateSurvey(this.values);
+    const errors = validateSurvey(this.values, this.course.operations.sessions.map(s=>s.id));
     if (Object.keys(errors).length) {
       if (errors.consent && Object.keys(errors).length === 1) return this.showVisibleError(errors.consent, "consent");
       const firstField = SURVEY_FIELDS.find((field) => errors[field] || (field === "name" && errors.phone) || (field === "learningGoals" && errors.learningGoalOther));

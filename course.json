@@ -3,7 +3,7 @@
   "courseId": "deniq-ai-oneday",
   "title": "DENIQ AI 원데이클래스",
   "designRevision": "yunha-v5",
-  "operationsRevision": "survey-before-transfer-20261003",
+  "operationsRevision": "november-session-20261026",
   "instructor": {
     "name": "LOGAN",
     "role": "Studio DENIQ 대표 · 아트 디렉터",
@@ -100,7 +100,7 @@
   "adminUrl": "https://deniq-oneday-intake.whdos2005.workers.dev/admin",
   "visualVariant": "photo-editorial-v1",
   "operations": {
-    "date": "10월 11일 · 10월 18일",
+    "date": "11월 8일",
     "startTime": "15:00",
     "endTime": "19:00",
     "venue": "압구정로데오역 도보 5분",
@@ -120,6 +120,14 @@
     "refundAfterDeadline": "이후 취소에 대한 세부 환불 기준과 신청 방법은 모집 일정 확정 시 함께 안내합니다.",
     "durationHours": 4,
     "sessions": [
+      {
+        "id": "2026-11-08",
+        "label": "11월 8일",
+        "startAt": "2026-11-08T15:00:00+09:00",
+        "endAt": "2026-11-08T19:00:00+09:00"
+      }
+    ],
+    "archivedSessions": [
       {
         "id": "2026-10-11",
         "label": "10월 11일",
